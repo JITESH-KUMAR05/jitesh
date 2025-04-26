@@ -133,3 +133,8 @@ export function unregister() {
     });
   }
 }
+fetch("/blogs.json")
+  .then(res => {
+    if (!res.ok) throw new Error("404");
+    return res.json();
+  })

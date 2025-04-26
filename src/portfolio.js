@@ -183,7 +183,7 @@ const workExperiences = {
     {
       role: "Full Stack Developer (Freelance)",
       company: "Travel Together",
-      companylogo: require("./assets/images/travelTogetherLogo.png"), 
+      companylogo: require("./assets/images/travelTogetherLogo.png"),
       date: "2024",
       desc: "Developed an AI-driven travel application offering personalized itineraries based on user preferences and travel styles.",
       descBullets: [
@@ -256,14 +256,12 @@ const achievementSection = {
         {
           name: "Certification",
           url: "https://drive.google.com/file/d/1jUMldmdfMkEkVWUv2Sxu8iyk0N86dHMn/view"
-        },
-        
+        }
       ]
     },
     {
       title: "Postman API Fundamentals Student Expert",
-      subtitle:
-        "Postman API Fundamentals Student Expert by Postman",
+      subtitle: "Postman API Fundamentals Student Expert by Postman",
       image: require("./assets/images/postmanStudent.png"),
       imageAlt: "Postman Student Expert Logo",
       footerLink: [
@@ -280,10 +278,10 @@ const achievementSection = {
       image: require("./assets/images/infosysDS.jpg"),
       imageAlt: "Infosys Springboard Logo",
       footerLink: [
-        {name: "Certification",
-           url: "https://drive.google.com/file/d/1B2bH7xngFKmZZFfbkDaEkzRCanXWgLh4/view"
-        },
-        
+        {
+          name: "Certification",
+          url: "https://drive.google.com/file/d/1B2bH7xngFKmZZFfbkDaEkzRCanXWgLh4/view"
+        }
       ]
     }
   ],
@@ -359,7 +357,7 @@ const contactInfo = {
   title: emoji("Contact Me ☎️"),
   subtitle:
     "Discuss a project or just want to say hi? My Inbox is open for all.",
-  email_address: "jitesh.kumar05official@gmail.com",
+  email_address: "jitesh.kumar05official@gmail.com"
 };
 
 // Twitter Section

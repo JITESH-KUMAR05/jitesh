@@ -37,11 +37,10 @@ const socialMediaLinks = {
   linkedin: "https://www.linkedin.com/in/jiteshkumar05/",
   gmail: "jitesh.kumar05official@gmail.com",
   // gitlab: "https://gitlab.com/jitesh-kumar05",
-  // facebook: "https://www.facebook.com/saad.pasta7",
   stackoverflow: "https://stackoverflow.com/users/23510505/jitesh-kumar",
   // Instagram, Twitter and Kaggle are also supported in the links!
   // To customize icons and social links, tweak src/components/SocialMedia
-  display: true // Set true to display this section, defaults to false
+  display: true 
 };
 
 // Skills Section

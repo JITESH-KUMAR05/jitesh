@@ -12,6 +12,9 @@
   border-radius: 16px;
   border: 1px solid rgba(16, 185, 129, 0.1);
   transition: all 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .experience-card-dark {
@@ -22,6 +25,9 @@
   border-radius: 16px;
   border: 1px solid rgba(16, 185, 129, 0.2);
   transition: all 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .experience-card:hover {
@@ -129,6 +135,19 @@
 .experience-text-details {
   padding: 1.5rem;
   margin-top: 2rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.experience-text-details ul {
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.experience-text-details li {
+  margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* Media Query */
@@ -152,15 +171,53 @@
 
 @media (max-width: 768px) {
   .experience-text-role {
-    font-size: 22px;
+    font-size: 20px;
   }
   .experience-text-company {
-    font-size: 22px;
+    font-size: 20px;
   }
   .experience-text-date {
-    font-size: 18px;
+    font-size: 16px;
   }
   .experience-text-desc {
-    font-size: 16px;
+    font-size: 14px;
+  }
+  .experience-text-details {
+    padding: 1rem;
+    margin-top: 1.5rem;
+  }
+  .experience-banner {
+    height: 9rem;
+  }
+  .experience-roundedimg {
+    width: 6rem;
+    height: 6rem;
+    top: 5.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-text-role {
+    font-size: 18px;
+  }
+  .experience-text-company {
+    font-size: 18px;
+  }
+  .experience-text-date {
+    font-size: 14px;
+  }
+  .experience-text-desc {
+    font-size: 13px;
+  }
+  .experience-text-details {
+    padding: 0.8rem;
+  }
+  .experience-banner {
+    height: 8rem;
+  }
+  .experience-roundedimg {
+    width: 5rem;
+    height: 5rem;
+    top: 4.5rem;
   }
 }

@@ -74,11 +74,19 @@
   align-items: center;
 }
 
+.dark-mode .skill p {
+  color: $textColorDark !important;
+}
+
 .skill p::after {
   content: attr(data-percentage);
   font-size: 14px;
   font-weight: 500;
   color: $primaryColor;
+}
+
+.dark-mode .skill p::after {
+  color: $accentColor !important;
 }
 .skill-bars {
   font-size: 28px;
@@ -92,6 +100,10 @@
   position: relative;
   margin-bottom: 40px;
   text-align: left;
+}
+
+.dark-mode .skills-heading {
+  color: $textColorDark !important;
 }
 
 .skills-heading::after {
@@ -148,7 +160,7 @@
 
 /* Media Query */
 
-@media (max-width: 1456px) {
+@media (max-width: 768px) {
   .skills-bar {
     line-height: 4rem;
   }
@@ -177,8 +189,10 @@
     order: 1;
   }
   .skills-image {
-    display: none;
+    display: flex;
     order: 2;
+    justify-content: center;
+    margin-top: 2rem;
   }
   .skills-heading {
     font-size: 30px;

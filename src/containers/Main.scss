@@ -60,3 +60,17 @@ h6 {
 *:hover {
   transition: all 0.3s ease;
 }
+
+/* Prevent horizontal overflow */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.main,
+section,
+div {
+  max-width: 100%;
+  overflow-x: hidden;
+}

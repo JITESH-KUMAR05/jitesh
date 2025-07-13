@@ -59,9 +59,6 @@ const skillsSection = {
     emoji("🔍 Working on Computer Vision projects using OpenCV")
   ],
 
-  /* Make Sure to include correct Font Awesome Classname to view your icon
-https://fontawesome.com/icons?d=gallery */
-
   softwareSkills: [
     {
       skillName: "Python",

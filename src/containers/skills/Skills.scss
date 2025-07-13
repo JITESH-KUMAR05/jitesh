@@ -34,13 +34,18 @@
 }
 
 .skills-heading::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -8px;
   left: 0;
   width: 80px;
   height: 4px;
-  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  background: linear-gradient(
+    135deg,
+    $primaryColor 0%,
+    $secondaryColor 50%,
+    $accentColor 100%
+  );
   border-radius: 2px;
 }
 .subTitle {

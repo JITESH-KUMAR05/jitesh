@@ -40,7 +40,7 @@ const socialMediaLinks = {
   stackoverflow: "https://stackoverflow.com/users/23510505/jitesh-kumar",
   // Instagram, Twitter and Kaggle are also supported in the links!
   // To customize icons and social links, tweak src/components/SocialMedia
-  display: true 
+  display: true
 };
 
 // Skills Section
@@ -52,7 +52,9 @@ const skillsSection = {
     emoji("🤖 Learning Machine Learning algorithms and model development"),
     emoji("🧠 Exploring Deep Learning networks using TensorFlow and PyTorch"),
     emoji("🎯 Building projects with Generative AI and Large Language Models"),
-    emoji("📊 Developing skills in data preprocessing and statistical analysis"),
+    emoji(
+      "📊 Developing skills in data preprocessing and statistical analysis"
+    ),
     emoji("🚀 Creating AI-powered applications and intelligent systems"),
     emoji("🔍 Working on Computer Vision projects using OpenCV")
   ],

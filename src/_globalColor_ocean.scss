@@ -1,10 +1,10 @@
 /* Modern Ocean-Tech Theme - Unique & Professional */
 
 // Primary brand colors - Ocean blue to tech cyan theme
-$primaryColor: #0891b2;     // Sky-600
-$primaryHover: #0284c7;     // Sky-700  
-$secondaryColor: #06b6d4;   // Cyan-500
-$accentColor: #22d3ee;      // Cyan-400
+$primaryColor: #0891b2; // Sky-600
+$primaryHover: #0284c7; // Sky-700
+$secondaryColor: #06b6d4; // Cyan-500
+$accentColor: #22d3ee; // Cyan-400
 
 // button colors - Modern ocean theme
 $buttonColor: $primaryColor;
@@ -12,36 +12,36 @@ $buttonHover: $primaryHover;
 $topButtonHover: #1f2937;
 
 // text colors light theme - Enhanced readability
-$titleColor: #0f172a;       // Slate-900
-$textColor: #334155;        // Slate-700
-$subTitle: #64748b;         // Slate-500
-$cardSubtitle: #475569;     // Slate-600
+$titleColor: #0f172a; // Slate-900
+$textColor: #334155; // Slate-700
+$subTitle: #64748b; // Slate-500
+$cardSubtitle: #475569; // Slate-600
 $talkCardSubTitle: #64748b; // Slate-500
 $blogCardTitleColor: #0f172a;
 
 // text color dark theme
-$textColorDark: #f1f5f9;    // Slate-100
+$textColorDark: #f1f5f9; // Slate-100
 
 // toggle switch colors - Ocean theme
 $toggleCheck: $primaryColor;
-$toggleSwitchSliderBG: #e2e8f0;  // Slate-200
+$toggleSwitchSliderBG: #e2e8f0; // Slate-200
 
 // githubRepo specific colors - Ocean theme updates
 $githubRepoCardLanguageColorBG: $primaryColor;
-$githubRepoCardColor: rgb(71, 85, 105);      // Slate-600
-$githubRepoCardRepoCardStatsColor: rgb(100, 116, 139);  // Slate-500
-$githubRepoCardRepoNameColor: rgb(15, 23, 42);  // Slate-900
-$githubProfileCardLocationTS: #e0f2fe;        // Sky-50
+$githubRepoCardColor: rgb(71, 85, 105); // Slate-600
+$githubRepoCardRepoCardStatsColor: rgb(100, 116, 139); // Slate-500
+$githubRepoCardRepoNameColor: rgb(15, 23, 42); // Slate-900
+$githubProfileCardLocationTS: #e0f2fe; // Sky-50
 $githubProfileCardBorder: $secondaryColor;
 
 // light background colors - Clean and modern
 $lightBackground1: #ffffff;
-$lightBackground2: #f8fafc;     // Slate-50
-$lightBackground3: #f1f5f9;     // Slate-100
+$lightBackground2: #f8fafc; // Slate-50
+$lightBackground3: #f1f5f9; // Slate-100
 $blogCardContainerColor: #475569;
 
 // dark background colors
-$darkBackground: #0f172a;       // Slate-900
+$darkBackground: #0f172a; // Slate-900
 
 // light theme box shadows - Ocean depth effect
 $lightBoxShadowDark: rgba(8, 145, 178, 0.15);

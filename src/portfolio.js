@@ -116,12 +116,11 @@ https://fontawesome.com/icons?d=gallery */
       fontAwesomeClassname: "fab fa-git-alt"
     }
   ],
-  display: true 
+  display: true
 };
 
-
 const educationInfo = {
-  display: true, 
+  display: true,
   schools: [
     {
       schoolName: "Anurag University",
@@ -165,13 +164,13 @@ const techStack = {
       progressPercentage: "15%"
     }
   ],
-  displayCodersrank: false 
+  displayCodersrank: false
 };
 
 // Work experience section
 
 const workExperiences = {
-  display: true, 
+  display: true,
   experience: [
     {
       role: "Full Stack Developer (Freelance)",

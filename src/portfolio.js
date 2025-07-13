@@ -193,34 +193,34 @@ const openSource = {
 // Some big projects you have worked on
 
 const bigProjects = {
-  title: "Big Projects",
+  title: "Projects",
   subtitle: "SOME STARTUPS AND COMPANIES THAT I HELPED TO CREATE THEIR TECH",
   projects: [
     {
-      image: require("./assets/images/saayaHealthLogo.webp"),
-      projectName: "Saayahealth",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      image: require("./assets/images/studentperformance.png"),
+      projectName: "Student Performance Prediction Web App",
+      projectDesc: "Built a full-stack ML web app to predict student math scores (88%+ accuracy) using Flask and scikit-learn with a modern responsive UI Explored both Azure and AWS to deploy containerized ML workflows, gaining experience with scalable MLOps deployment and cloud DevOps fundamentals.",
       footerLink: [
         {
-          name: "Visit Website",
-          url: "http://saayahealth.com/"
+          name: "Visit Github",
+          url: "https://github.com/JITESH-KUMAR05/studentperformance"
         }
         //  you can add extra buttons here.
       ]
     },
     {
-      image: require("./assets/images/nextuLogo.webp"),
-      projectName: "Nextu",
-      projectDesc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      image: require("./assets/images/heritage-hues.png"),
+      projectName: "Heritage Hues",
+      projectDesc: "Cross-platform tourism app showcasing Indian heritage, built using FlutterFlow and Supabase. Aggregated geolocation-based heritage data and integrated a searchable market module.",
       footerLink: [
         {
-          name: "Visit Website",
-          url: "http://nextu.se/"
+          name: "Visit Github",
+          url: "https://github.com/JITESH-KUMAR05/Heritage-Hues"
         }
       ]
     }
   ],
-  display: false // Set false to hide this section, defaults to true
+  display: true // Set false to hide this section, defaults to true
 };
 
 // Achievement Section
@@ -246,14 +246,14 @@ const achievementSection = {
       ]
     },
     {
-      title: "Postman API Fundamentals Student Expert",
-      subtitle: "Postman API Fundamentals Student Expert by Postman",
-      image: require("./assets/images/postmanStudent.png"),
-      imageAlt: "Postman Student Expert Logo",
+      title: "Google AI Essentials",
+      subtitle: "Google AI Essentials Certificate by Google on Coursera",
+      image: require("./assets/images/google-ai-essentials.png"),
+      imageAlt: "Google AI Essentials Logo",
       footerLink: [
         {
-          name: "Verified Badge",
-          url: "https://badgr.com/public/assertions/ft-hbYhHTT2QNgqADYxrZw"
+          name: "Verify Here",
+          url: "https://www.coursera.org/account/accomplishments/verify/WQC7KJL8DXM8"
         }
       ]
     },
@@ -300,9 +300,7 @@ const podcastSection = {
   subtitle: "I LOVE TO TALK ABOUT MYSELF AND TECHNOLOGY",
 
   // Please Provide with Your Podcast embeded Link
-  podcast: [
-    "https://anchor.fm/codevcast/embed/episodes/DevStory---Saad-Pasta-from-Karachi--Pakistan-e9givv/a-a15itvo"
-  ],
+  podcast: [""],
   display: false // Set false to hide this section, defaults to true
 };
 

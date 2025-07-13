@@ -1,14 +1,18 @@
 import React, {useContext} from "react";
 import "./Footer.scss";
-import {Fade} from "react-reveal";
+import {motion} from "framer-motion";
 import emoji from "react-easy-emoji";
 import StyleContext from "../../contexts/StyleContext";
 
 export default function Footer() {
   const {isDark} = useContext(StyleContext);
   return (
-    <Fade bottom duration={1000} distance="5px">
-      <div className="footer-div">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="footer-div"
+    >
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
           {emoji("🤖")} Let's connect and explore the fascinating world of AI/ML together!
         </p>
@@ -24,7 +28,6 @@ export default function Footer() {
             View Source Code on GitHub
           </a>
         </p>
-      </div>
-    </Fade>
+      </motion.div>
   );
 }

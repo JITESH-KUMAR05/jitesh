@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {Fade} from "react-reveal";
+import {motion} from "framer-motion";
 import emoji from "react-easy-emoji";
 import "./Greeting.scss";
 import landingPerson from "../../assets/lottie/landingPerson";
@@ -15,8 +15,13 @@ export default function Greeting() {
     return null;
   }
   return (
-    <Fade bottom duration={1000} distance="40px">
-      <div className="greet-main" id="greeting">
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="greet-main" 
+      id="greeting"
+    >
         <div className="greeting-main">
           <div className="greeting-text-div">
             <div>
@@ -62,7 +67,6 @@ export default function Greeting() {
             )}
           </div>
         </div>
-      </div>
-    </Fade>
+    </motion.div>
   );
 }

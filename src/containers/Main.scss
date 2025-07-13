@@ -2,7 +2,7 @@
 
 /* Main Layout Styles */
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   line-height: 1.6;
   color: $textColor;
   scroll-behavior: smooth;
@@ -15,21 +15,25 @@ body {
 }
 
 /* Global Section Spacing */
-section, .main {
+section,
+.main {
   padding: 3rem 0;
-  
+
   @media (max-width: 768px) {
     padding: 2rem 0;
   }
 }
 
 /* Container Consistency */
-.main, .greet-main, .education-section, .experience-container {
+.main,
+.greet-main,
+.education-section,
+.experience-container {
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 1rem;
   padding-right: 1rem;
-  
+
   @media (max-width: 768px) {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -37,7 +41,12 @@ section, .main {
 }
 
 /* Enhanced Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 1rem;

@@ -40,13 +40,18 @@
 }
 
 .greeting-text::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  background: linear-gradient(
+    135deg,
+    $primaryColor 0%,
+    $secondaryColor 50%,
+    $accentColor 100%
+  );
   border-radius: 2px;
 }
 

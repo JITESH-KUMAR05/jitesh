@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
@@ -25,12 +25,12 @@
   color: $titleColor !important;
   position: relative;
   margin-bottom: 30px;
-  
+
   @media (max-width: 768px) {
     font-size: 40px;
     text-align: center;
   }
-  
+
   @media (max-width: 480px) {
     font-size: 32px;
   }
@@ -41,15 +41,20 @@
 }
 
 .contact-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -8px;
   left: 0;
   width: 100px;
   height: 4px;
-  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  background: linear-gradient(
+    135deg,
+    $primaryColor 0%,
+    $secondaryColor 50%,
+    $accentColor 100%
+  );
   border-radius: 2px;
-  
+
   @media (max-width: 768px) {
     left: 50%;
     transform: translateX(-50%);
@@ -64,11 +69,11 @@
   color: $textColor;
   text-decoration: none;
   transition: all 0.3s ease;
-  
+
   @media (max-width: 768px) {
     font-size: 24px;
   }
-  
+
   @media (max-width: 480px) {
     font-size: 20px;
   }
@@ -93,7 +98,7 @@
 
 .contact-margin-top {
   margin-top: 4rem;
-  
+
   @media (max-width: 768px) {
     margin-top: 2rem;
   }

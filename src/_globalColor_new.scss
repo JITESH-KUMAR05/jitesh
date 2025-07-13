@@ -1,10 +1,10 @@
 /* Modern Purple-Violet Professional Theme - Unique & Attractive */
 
 // Primary brand colors - Purple to Violet gradient theme
-$primaryColor: #7c3aed;     // Violet-600
-$primaryHover: #6d28d9;     // Violet-700
-$secondaryColor: #a855f7;   // Purple-500
-$accentColor: #c084fc;      // Purple-400
+$primaryColor: #7c3aed; // Violet-600
+$primaryHover: #6d28d9; // Violet-700
+$secondaryColor: #a855f7; // Purple-500
+$accentColor: #c084fc; // Purple-400
 
 // button colors - Modern violet theme
 $buttonColor: $primaryColor;
@@ -12,36 +12,36 @@ $buttonHover: $primaryHover;
 $topButtonHover: #1f2937;
 
 // text colors light theme - Enhanced contrast
-$titleColor: #1e293b;       // Slate-800
-$textColor: #475569;        // Slate-600
-$subTitle: #64748b;         // Slate-500
-$cardSubtitle: #475569;     // Slate-600
+$titleColor: #1e293b; // Slate-800
+$textColor: #475569; // Slate-600
+$subTitle: #64748b; // Slate-500
+$cardSubtitle: #475569; // Slate-600
 $talkCardSubTitle: #64748b; // Slate-500
 $blogCardTitleColor: #1e293b;
 
 // text color dark theme
-$textColorDark: #f1f5f9;    // Slate-100
+$textColorDark: #f1f5f9; // Slate-100
 
 // toggle switch colors - Violet theme
 $toggleCheck: $primaryColor;
-$toggleSwitchSliderBG: #e2e8f0;  // Slate-200
+$toggleSwitchSliderBG: #e2e8f0; // Slate-200
 
 // githubRepo specific colors - Violet theme updates
 $githubRepoCardLanguageColorBG: $primaryColor;
-$githubRepoCardColor: rgb(71, 85, 105);      // Slate-600
-$githubRepoCardRepoCardStatsColor: rgb(100, 116, 139);  // Slate-500
-$githubRepoCardRepoNameColor: rgb(30, 41, 59);  // Slate-800
-$githubProfileCardLocationTS: #f3e8ff;        // Purple-50
+$githubRepoCardColor: rgb(71, 85, 105); // Slate-600
+$githubRepoCardRepoCardStatsColor: rgb(100, 116, 139); // Slate-500
+$githubRepoCardRepoNameColor: rgb(30, 41, 59); // Slate-800
+$githubProfileCardLocationTS: #f3e8ff; // Purple-50
 $githubProfileCardBorder: $secondaryColor;
 
 // light background colors - Modern and clean
 $lightBackground1: #ffffff;
-$lightBackground2: #f8fafc;     // Slate-50
-$lightBackground3: #f1f5f9;     // Slate-100
+$lightBackground2: #f8fafc; // Slate-50
+$lightBackground3: #f1f5f9; // Slate-100
 $blogCardContainerColor: #475569;
 
 // dark background colors
-$darkBackground: #0f172a;       // Slate-900
+$darkBackground: #0f172a; // Slate-900
 
 // light theme box shadows - Enhanced for depth
 $lightBoxShadowDark: rgba(124, 58, 237, 0.15);

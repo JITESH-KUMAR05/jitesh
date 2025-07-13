@@ -16,6 +16,9 @@
 
 .greeting-main {
   display: flex;
+  align-items: center;
+  gap: 3rem;
+  min-height: 500px;
 }
 
 .subTitle {
@@ -23,8 +26,22 @@
 }
 
 .greeting-main > * {
-  flex: 1;
-  margin-bottom: 30px;
+  margin-bottom: 0;
+}
+
+.greeting-text-div {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.greeting-image-div {
+  flex: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 }
 
 .greeting-text {
@@ -74,8 +91,14 @@
 }
 
 .greeting-image-div > img {
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
+  filter: drop-shadow(0 15px 30px rgba(16, 185, 129, 0.15));
+  transition: transform 0.3s ease;
+}
+
+.greeting-image-div > img:hover {
+  transform: scale(1.02);
 }
 
 .wave-emoji {
@@ -118,6 +141,10 @@
   .greeting-text-p {
     font-size: 20px;
   }
+  .greeting-main {
+    gap: 2rem;
+    min-height: 400px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -136,9 +163,14 @@
   }
   .greeting-main {
     flex-direction: column-reverse;
+    gap: 2rem;
+    min-height: auto;
   }
   .greeting-text-div {
     text-align: center;
+  }
+  .greeting-image-div {
+    padding: 1rem;
   }
 }
 

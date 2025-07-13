@@ -1,51 +1,93 @@
 @import "../../_globalColor";
 
+.software-skills-main-div {
+  margin: 2rem 0;
+}
+
 .dev-icons {
   padding-left: 0;
   list-style: none;
-  font-size: 3rem;
-  margin-bottom: 0px;
-  margin-top: 0px;
-  text-align: center;
+  font-size: 2.5rem;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+  max-width: 100%;
 }
 
 .software-skill-inline {
-  display: inline-block;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.2rem;
+  border-radius: 16px;
   transition: all 0.3s ease;
-  background: rgba(124, 58, 237, 0.05);
+  background: rgba(6, 182, 212, 0.05);
   border: 2px solid transparent;
+  min-height: 120px;
+  justify-content: center;
 }
 
 .software-skill-inline:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   background: rgba(16, 185, 129, 0.1);
   border: 2px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 12px 25px rgba(16, 185, 129, 0.25);
 }
 
 .software-skill-inline > i {
   color: $subTitle;
   transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
 }
 
-.software-skill-inline > i:hover {
+.software-skill-inline:hover > i {
   color: #10b981;
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .software-skill-inline > p {
   color: $subTitle;
-  font-size: 10px;
-  margin-top: 8px;
-  font-weight: 500;
+  font-size: 12px;
+  margin: 0;
+  font-weight: 600;
   transition: all 0.3s ease;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .software-skill-inline:hover > p {
   color: #10b981;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dev-icons {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.8rem;
+    font-size: 2rem;
+  }
+  
+  .software-skill-inline {
+    padding: 1rem;
+    min-height: 100px;
+  }
+  
+  .software-skill-inline > p {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dev-icons {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 0.6rem;
+    font-size: 1.8rem;
+  }
+  
+  .software-skill-inline {
+    padding: 0.8rem;
+    min-height: 85px;
+  }
 }

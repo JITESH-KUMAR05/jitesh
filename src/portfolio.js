@@ -116,22 +116,21 @@ https://fontawesome.com/icons?d=gallery */
       fontAwesomeClassname: "fab fa-git-alt"
     }
   ],
-  display: true // Set false to hide this section, defaults to true
+  display: true 
 };
 
-// Education Section
 
 const educationInfo = {
-  display: true, // Set false to hide this section, defaults to true
+  display: true, 
   schools: [
     {
       schoolName: "Anurag University",
       logo: require("./assets/images/Anurag.png"),
       subHeader: "Bachelor of Technology in Information Technology",
-      duration: "August 2023 - May 2027",
+      duration: "August 2023 - June 2027",
       desc: "Currently pursuing my degree with focus on web development and AI/ML. Active participant in university's technical community.",
       descBullets: [
-        "First-year student selected for GeeksforGeeks Anurag Student Chapter Technical Team",
+        "Selected for GeeksforGeeks Anurag Student Chapter Technical Team",
         "Vice President of IEEE SSIT (Society on Social Implications of Technology) Chapter",
         "Regular participant in hackathons and technical competitions",
         "Balancing academics with hands-on project development and community leadership"
@@ -146,25 +145,33 @@ const techStack = {
   viewSkillBars: true, //Set it to true to show Proficiency Section
   experience: [
     {
-      Stack: "Frontend/Design", //Insert stack or technology you have experience in
-      progressPercentage: "80%" //Insert relative proficiency in percentage
+      Stack: "DSA", //Insert stack or technology you have experience in
+      progressPercentage: "90%" //Insert relative proficiency in percentage
     },
     {
-      Stack: "Backend",
-      progressPercentage: "60%"
-    },
-    {
-      Stack: "Programming",
+      Stack: "Python",
       progressPercentage: "90%"
+    },
+    {
+      Stack: "Machine Learning",
+      progressPercentage: "75%"
+    },
+    {
+      Stack: "Deep Learning",
+      progressPercentage: "25%"
+    },
+    {
+      Stack: "Gen AI",
+      progressPercentage: "15%"
     }
   ],
-  displayCodersrank: false // Set true to display codersrank badges section need to changes your username in src/containers/skillProgress/skillProgress.js:17:62, defaults to false
+  displayCodersrank: false 
 };
 
 // Work experience section
 
 const workExperiences = {
-  display: true, //Set it to true to show workExperiences Section
+  display: true, 
   experience: [
     {
       role: "Full Stack Developer (Freelance)",

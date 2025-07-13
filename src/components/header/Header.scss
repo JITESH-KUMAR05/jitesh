@@ -8,7 +8,9 @@
 /* header */
 
 .dark-menu {
-  background-color: $darkBackground !important;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%) !important;
+  border-bottom: 1px solid rgba(6, 182, 212, 0.2) !important;
+  box-shadow: 0 2px 8px -2px rgba(8, 145, 178, 0.2), 0 4px 12px -4px rgba(8, 145, 178, 0.1) !important;
   color: $textColorDark;
 }
 
@@ -18,13 +20,25 @@
 
 .dark-menu li a:hover {
   background-color: $buttonColor !important;
+  border-radius: 6px;
+}
+
+.dark-menu .logo {
+  color: $textColorDark !important;
+}
+
+.dark-menu .logo-name {
+  color: $textColorDark !important;
 }
 
 .header {
-  background-color: $lightBackground1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
   max-width: 100%;
-  padding: 15px 20px;
+  padding: 18px 24px;
   margin: 0px auto;
+  box-shadow: 0 2px 8px -2px rgba(8, 145, 178, 0.1), 0 4px 12px -4px rgba(8, 145, 178, 0.05);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.1);
 }
 
 .header ul {
@@ -58,6 +72,7 @@
   text-decoration: none;
   margin-top: 10px;
   line-height: normal;
+  color: $titleColor;
 }
 
 .header .logo-name {
@@ -66,6 +81,7 @@
   font-variant-ligatures: no-common-ligatures;
   -webkit-font-variant-ligatures: no-common-ligatures;
   padding: 0 10px;
+  color: $titleColor;
 }
 
 /* menu */

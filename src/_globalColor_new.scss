@@ -1,0 +1,95 @@
+/* Modern Purple-Violet Professional Theme - Unique & Attractive */
+
+// Primary brand colors - Purple to Violet gradient theme
+$primaryColor: #7c3aed;     // Violet-600
+$primaryHover: #6d28d9;     // Violet-700
+$secondaryColor: #a855f7;   // Purple-500
+$accentColor: #c084fc;      // Purple-400
+
+// button colors - Modern violet theme
+$buttonColor: $primaryColor;
+$buttonHover: $primaryHover;
+$topButtonHover: #1f2937;
+
+// text colors light theme - Enhanced contrast
+$titleColor: #1e293b;       // Slate-800
+$textColor: #475569;        // Slate-600
+$subTitle: #64748b;         // Slate-500
+$cardSubtitle: #475569;     // Slate-600
+$talkCardSubTitle: #64748b; // Slate-500
+$blogCardTitleColor: #1e293b;
+
+// text color dark theme
+$textColorDark: #f1f5f9;    // Slate-100
+
+// toggle switch colors - Violet theme
+$toggleCheck: $primaryColor;
+$toggleSwitchSliderBG: #e2e8f0;  // Slate-200
+
+// githubRepo specific colors - Violet theme updates
+$githubRepoCardLanguageColorBG: $primaryColor;
+$githubRepoCardColor: rgb(71, 85, 105);      // Slate-600
+$githubRepoCardRepoCardStatsColor: rgb(100, 116, 139);  // Slate-500
+$githubRepoCardRepoNameColor: rgb(30, 41, 59);  // Slate-800
+$githubProfileCardLocationTS: #f3e8ff;        // Purple-50
+$githubProfileCardBorder: $secondaryColor;
+
+// light background colors - Modern and clean
+$lightBackground1: #ffffff;
+$lightBackground2: #f8fafc;     // Slate-50
+$lightBackground3: #f1f5f9;     // Slate-100
+$blogCardContainerColor: #475569;
+
+// dark background colors
+$darkBackground: #0f172a;       // Slate-900
+
+// light theme box shadows - Enhanced for depth
+$lightBoxShadowDark: rgba(124, 58, 237, 0.15);
+$lightBoxShadow: rgba(124, 58, 237, 0.08);
+$lightBoxShadowDarker: rgba(124, 58, 237, 0.25);
+
+// dark theme box shadows
+$darkBoxShadow: #e2e8f0;
+$darkBoxShadow2: #ffffff;
+
+// linear gradients - Modern purple theme
+$experienceCardBlurredDivLG: linear-gradient(
+  rgba(124, 58, 237, 0.4),
+  rgba(124, 58, 237, 0.2)
+);
+$experienceCardBannerLG: linear-gradient(
+  rgba(124, 58, 237, 0.7),
+  rgba(124, 58, 237, 0.5)
+);
+
+// borders - Purple accent
+$progressBarBackground: #f1f5f9;
+$lightBorder1: rgba(168, 85, 247, 0.2);
+$educationCardBorder: #a855f7;
+
+// hovers - Enhanced purple interactions
+$achievementCertificateCardHoverDark: rgba(124, 58, 237, 0.2);
+$blogCardHoverSmallColor: rgba(168, 85, 247, 0.8);
+$headerHoverBG: #f8fafc;
+$contactDetailHoverTS: #a855f7;
+
+// misc backgrounds - Purple theme
+$progressBarSpanBG: $primaryColor;
+$iconBackground: #1e293b;
+$appHeaderBG: #1e293b;
+
+// misc colors - Enhanced purple theme
+$skillsColor: $primaryColor;
+$appLink: #06d3ac;
+
+// social media icons - Consistent with theme
+$faceBook: #3b5998;
+$linkedin: #0e76a8;
+$github: #1e293b;
+$gitlab: #fca326;
+$google: #ea4335;
+$twitter: #1da1f2;
+$medium: #000;
+$stackoverflow: #f48024;
+$instagram: #c13584;
+$kaggle: #20beff;

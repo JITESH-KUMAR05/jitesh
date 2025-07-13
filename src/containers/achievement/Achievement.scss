@@ -2,9 +2,28 @@
 
 .achievement-heading {
   font-size: 56px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: normal;
   margin: 0px;
+  color: $titleColor !important;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.dark-mode .achievement-heading {
+  color: $textColorDark !important;
+}
+
+.achievement-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  border-radius: 2px;
 }
 .achievement-subtitle {
   text-transform: uppercase;

@@ -30,13 +30,12 @@
 .greeting-text {
   font-size: 70px;
   line-height: 1.1;
-  color: $titleColor !important;
-  font-weight: 600;
+  color: $textColor !important;
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   position: relative;
-}
-
-.dark-mode .greeting-text {
-  color: $textColorDark !important;
 }
 
 .greeting-text::after {
@@ -46,7 +45,7 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%);
   border-radius: 2px;
 }
 

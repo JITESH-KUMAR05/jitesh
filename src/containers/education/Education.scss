@@ -1,6 +1,26 @@
+@import "../../_globalColor";
+
 .education-heading {
   font-size: 56px;
-  font-weight: 400;
+  font-weight: 600;
+  color: $titleColor !important;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.dark-mode .education-heading {
+  color: $textColorDark !important;
+}
+
+.education-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  border-radius: 2px;
 }
 
 .education-section {

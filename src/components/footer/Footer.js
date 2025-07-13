@@ -10,8 +10,10 @@ export default function Footer() {
     <Fade bottom duration={1000} distance="5px">
       <div className="footer-div">
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
-          {emoji("💬")} If there's anything related to tech we can discuss, then
-          contact me.
+          {emoji("🤖")} Let's connect and explore the fascinating world of AI/ML together!
+        </p>
+        <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
+          Built with {emoji("❤️")} using React • Designed & Developed by Jitesh Kumar
         </p>
         <p className={isDark ? "dark-mode footer-text" : "footer-text"}>
           <a
@@ -19,7 +21,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            Follow me on GitHub
+            View Source Code on GitHub
           </a>
         </p>
       </div>

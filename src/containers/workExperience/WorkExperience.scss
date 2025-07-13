@@ -1,3 +1,5 @@
+@import "../../_globalColor";
+
 // .experience-cards-div {
 //   display: grid;
 //   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -46,7 +48,25 @@
 
 .experience-heading {
   font-size: 56px;
-  font-weight: 400;
+  font-weight: 600;
+  color: $titleColor !important;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.dark-mode .experience-heading {
+  color: $textColorDark !important;
+}
+
+.experience-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  border-radius: 2px;
 }
 
 .experience-container {

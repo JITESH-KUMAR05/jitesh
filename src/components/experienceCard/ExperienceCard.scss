@@ -2,22 +2,25 @@
 
 .experience-card {
   position: relative;
-  background-color: $lightBackground2;
-  box-shadow: $lightBoxShadowDark 0px 10px 30px -15px;
-  border-radius: 10px;
-  border: 1px solid $lightBorder1;
+  background: linear-gradient(145deg, $lightBackground2 0%, $lightBackground1 100%);
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -1px rgba(15, 23, 42, 0.06);
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  transition: all 0.3s ease;
 }
 
 .experience-card-dark {
   position: relative;
-  background-color: $darkBackground;
-  box-shadow: $lightBoxShadowDark 0px 10px 30px -15px;
-  border-radius: 10px;
-  border: 1px solid $lightBorder1;
+  background: linear-gradient(145deg, #1e293b 0%, $darkBackground 100%);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  transition: all 0.3s ease;
 }
 
 .experience-card:hover {
-  box-shadow: $lightBoxShadowDark 0px 20px 30px -10px;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
 }
 
 .experience-banner {

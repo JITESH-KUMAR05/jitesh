@@ -23,11 +23,11 @@ const greeting = {
   username: "Jitesh Kumar",
   title: "Hi all, I'm Jitesh",
   subTitle: emoji(
-    "A passionate Full Stack Software Developer 🚀 having an experience of building Web and Mobile applications with JavaScript / Reactjs / Nodejs  and some other cool libraries and frameworks."
+    "Aspiring AI/ML Engineer 🚀 currently learning Machine Learning, Deep Learning, and Generative AI. Building intelligent solutions and gaining hands-on experience in data science applications."
   ),
   resumeLink:
-    "https://drive.google.com/file/d/1nDWHL-f22mXHv2fQ3VbZXcOLOkM0CZR5/view?usp=sharing", // Set to empty to hide the button
-  displayGreeting: true // Set false to hide this section, defaults to true
+    "https://drive.google.com/file/d/1Y86W6N22A205FUbUsT15dC42c6sOWzwm/view?usp=sharing",
+  displayGreeting: true
 };
 
 // Social Media Links
@@ -37,29 +37,24 @@ const socialMediaLinks = {
   linkedin: "https://www.linkedin.com/in/jiteshkumar05/",
   gmail: "jitesh.kumar05official@gmail.com",
   // gitlab: "https://gitlab.com/jitesh-kumar05",
-  // facebook: "https://www.facebook.com/saad.pasta7",
   stackoverflow: "https://stackoverflow.com/users/23510505/jitesh-kumar",
   // Instagram, Twitter and Kaggle are also supported in the links!
   // To customize icons and social links, tweak src/components/SocialMedia
-  display: true // Set true to display this section, defaults to false
+  display: true 
 };
 
 // Skills Section
 
 const skillsSection = {
   title: "What I do",
-  subTitle: "FULL STACK DEVELOPER WITH PASSION FOR AI/ML AND DATA SCIENCE",
+  subTitle: "ASPIRING AI/ML ENGINEER WITH PASSION FOR INTELLIGENT SYSTEMS",
   skills: [
-    emoji(
-      "⚡ Develop highly interactive Front end / User Interfaces for your web and mobile applications"
-    ),
-    emoji("⚡ Building robust backend systems with Node.js and Express"),
-    emoji(
-      "⚡ Integration of third party services such as Firebase and payment gateways"
-    ),
-    emoji(
-      "⚡ Machine Learning models and Data Analysis using Python and its libraries"
-    )
+    emoji("🤖 Learning Machine Learning algorithms and model development"),
+    emoji("🧠 Exploring Deep Learning networks using TensorFlow and PyTorch"),
+    emoji("🎯 Building projects with Generative AI and Large Language Models"),
+    emoji("📊 Developing skills in data preprocessing and statistical analysis"),
+    emoji("🚀 Creating AI-powered applications and intelligent systems"),
+    emoji("🔍 Working on Computer Vision projects using OpenCV")
   ],
 
   /* Make Sure to include correct Font Awesome Classname to view your icon
@@ -67,55 +62,55 @@ https://fontawesome.com/icons?d=gallery */
 
   softwareSkills: [
     {
-      skillName: "html-5",
-      fontAwesomeClassname: "fab fa-html5"
+      skillName: "Python",
+      fontAwesomeClassname: "fab fa-python"
     },
     {
-      skillName: "css3",
-      fontAwesomeClassname: "fab fa-css3-alt"
+      skillName: "TensorFlow",
+      fontAwesomeClassname: "fas fa-brain"
+    },
+    {
+      skillName: "PyTorch",
+      fontAwesomeClassname: "fas fa-fire"
+    },
+    {
+      skillName: "Scikit-learn",
+      fontAwesomeClassname: "fas fa-cogs"
+    },
+    {
+      skillName: "Jupyter",
+      fontAwesomeClassname: "fas fa-book"
+    },
+    {
+      skillName: "Pandas",
+      fontAwesomeClassname: "fas fa-table"
+    },
+    {
+      skillName: "NumPy",
+      fontAwesomeClassname: "fas fa-calculator"
+    },
+    {
+      skillName: "OpenCV",
+      fontAwesomeClassname: "fas fa-eye"
     },
     {
       skillName: "JavaScript",
       fontAwesomeClassname: "fab fa-js"
     },
     {
-      skillName: "reactjs",
+      skillName: "React",
       fontAwesomeClassname: "fab fa-react"
     },
     {
-      skillName: "nodejs",
+      skillName: "Node.js",
       fontAwesomeClassname: "fab fa-node"
     },
     {
-      skillName: "npm",
-      fontAwesomeClassname: "fab fa-npm"
-    },
-    {
-      skillName: "sql-database",
+      skillName: "MongoDB",
       fontAwesomeClassname: "fas fa-database"
     },
     {
-      skillName: "mongodb",
-      fontAwesomeClassname: "fas fa-leaf"
-    },
-    {
-      skillName: "firebase",
-      fontAwesomeClassname: "fas fa-fire"
-    },
-    {
-      skillName: "python",
-      fontAwesomeClassname: "fab fa-python"
-    },
-    {
-      skillName: "tensorflow",
-      fontAwesomeClassname: "fas fa-brain"
-    },
-    {
-      skillName: "machine-learning",
-      fontAwesomeClassname: "fas fa-cogs"
-    },
-    {
-      skillName: "git",
+      skillName: "Git",
       fontAwesomeClassname: "fab fa-git-alt"
     }
   ],

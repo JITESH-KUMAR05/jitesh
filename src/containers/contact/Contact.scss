@@ -2,6 +2,13 @@
 
 .contact-div-main {
   display: flex;
+  align-items: center;
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 .dark-mode a {
@@ -14,27 +21,70 @@
 
 .contact-title {
   font-size: 65px;
-  font-weight: 400;
+  font-weight: 600;
+  color: $titleColor !important;
+  position: relative;
+  margin-bottom: 30px;
+  
+  @media (max-width: 768px) {
+    font-size: 40px;
+    text-align: center;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 32px;
+  }
+}
+
+.dark-mode .contact-title {
+  color: $textColorDark !important;
+}
+
+.contact-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  border-radius: 2px;
+  
+  @media (max-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .contact-detail,
 .contact-detail-email {
   margin-top: 20px;
-  font-size: 40px;
-  font-weight: 400;
-  color: $subTitle;
+  font-size: 32px;
+  font-weight: 500;
+  color: $textColor;
   text-decoration: none;
+  transition: all 0.3s ease;
+  
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 }
 
 .contact-detail:hover,
 .contact-detail-email:hover {
-  color: $textColor;
-  text-shadow: 2px 1px 2px $contactDetailHoverTS;
-  transition: all 0.3s;
+  color: $primaryColor;
+  transform: translateY(-2px);
 }
 
 .contact-subtitle {
   text-transform: uppercase;
+  color: $subTitle;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .contact-text-div {
@@ -43,6 +93,10 @@
 
 .contact-margin-top {
   margin-top: 4rem;
+  
+  @media (max-width: 768px) {
+    margin-top: 2rem;
+  }
 }
 
 .contact-image-div > img {

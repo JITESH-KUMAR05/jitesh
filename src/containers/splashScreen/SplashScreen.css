@@ -4,20 +4,37 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
 .splash-animation-container {
   height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .splash-title-container {
   font-size: 2.5rem;
   text-decoration: none;
+  margin-top: 1rem;
 }
+
 .splash-title {
   font-family: "Agustina Regular", cursive;
   font-weight: bold;
   font-variant-ligatures: no-common-ligatures;
   -webkit-font-variant-ligatures: no-common-ligatures;
   padding: 0 20px;
+  background: linear-gradient(135deg, #0891b2 0%, #06b6d4 50%, #22d3ee 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .splash-title-container {
+    font-size: 1.8rem;
+  }
 }

@@ -13,19 +13,39 @@
   display: inline-block;
   margin-right: 20px;
   margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: rgba(124, 58, 237, 0.05);
+  border: 2px solid transparent;
+}
+
+.software-skill-inline:hover {
+  transform: translateY(-5px);
+  background: rgba(16, 185, 129, 0.1);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
 }
 
 .software-skill-inline > i {
   color: $subTitle;
+  transition: all 0.3s ease;
 }
 
 .software-skill-inline > i:hover {
-  color: $skillsColor;
+  color: #10b981;
+  transform: scale(1.1);
 }
+
 .software-skill-inline > p {
   color: $subTitle;
   font-size: 10px;
+  margin-top: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
-.software-skill-inline > i:hover ~ p {
-  color: $skillsColor;
+
+.software-skill-inline:hover > p {
+  color: #10b981;
+  font-weight: 600;
 }

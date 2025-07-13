@@ -1,7 +1,27 @@
+@import "../../_globalColor";
+
 .project-title {
   font-size: 52px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: normal;
+  color: $titleColor !important;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.dark-mode .project-title {
+  color: $textColorDark !important;
+}
+
+.project-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, $primaryColor 0%, $secondaryColor 50%, $accentColor 100%);
+  border-radius: 2px;
 }
 
 .startup-project-text img {

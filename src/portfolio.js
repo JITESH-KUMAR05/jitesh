@@ -199,7 +199,8 @@ const bigProjects = {
     {
       image: require("./assets/images/studentperformance.png"),
       projectName: "Student Performance Prediction Web App",
-      projectDesc: "Built a full-stack ML web app to predict student math scores (88%+ accuracy) using Flask and scikit-learn with a modern responsive UI Explored both Azure and AWS to deploy containerized ML workflows, gaining experience with scalable MLOps deployment and cloud DevOps fundamentals.",
+      projectDesc:
+        "Built a full-stack ML web app to predict student math scores (88%+ accuracy) using Flask and scikit-learn with a modern responsive UI Explored both Azure and AWS to deploy containerized ML workflows, gaining experience with scalable MLOps deployment and cloud DevOps fundamentals.",
       footerLink: [
         {
           name: "Visit Github",
@@ -211,7 +212,8 @@ const bigProjects = {
     {
       image: require("./assets/images/heritage-hues.png"),
       projectName: "Heritage Hues",
-      projectDesc: "Cross-platform tourism app showcasing Indian heritage, built using FlutterFlow and Supabase. Aggregated geolocation-based heritage data and integrated a searchable market module.",
+      projectDesc:
+        "Cross-platform tourism app showcasing Indian heritage, built using FlutterFlow and Supabase. Aggregated geolocation-based heritage data and integrated a searchable market module.",
       footerLink: [
         {
           name: "Visit Github",

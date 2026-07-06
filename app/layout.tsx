@@ -1,4 +1,5 @@
 import { Fraunces, JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -20,7 +21,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body className="bg-bg font-sans text-fg antialiased">{children}</body>
+      <body className="bg-bg font-sans text-fg antialiased">
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

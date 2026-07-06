@@ -1,8 +1,8 @@
 repos:
 - repo: https://github.com/pre-commit/mirrors-prettier
-  rev: "v3.0.0-alpha.4" # Use the sha or tag you want to point at
+  rev: "v3.0.0-alpha.4"
   hooks:
     - id: prettier
-      files: ".*.(json|js|css)"
+      files: "\\.(json|js|ts|tsx|css|md)$"
 
 

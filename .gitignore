@@ -16,6 +16,8 @@
 
 # TinaCMS generated output
 /tina/__generated__
+/tina/tina-lock.json
+/public/admin
 
 
 # misc

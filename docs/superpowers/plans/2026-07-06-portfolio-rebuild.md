@@ -29,12 +29,14 @@
 ### Task 1: Remove legacy CRA app, scaffold Next.js + TypeScript + Tailwind
 
 **Files:**
+
 - Delete: `src/` (entire directory), `public/index.html`, `public/manifest.json`, `public/browserconfig.xml`, `fetch.js`, `Dockerfile`, `.github/workflows/deploy.yml`
 - Keep as-is: `public/favicon.ico`, `public/favicon-16x16.png`, `public/favicon-32x32.png`, `public/apple-touch-icon.png`, `public/android-chrome-192x192.png`, `public/android-chrome-384x384.png`, `public/mstile-150x150.png`, `public/safari-pinned-tab.svg`, `public/robots.txt`
 - Create: `package.json` (rewrite), `next.config.mjs`, `tsconfig.json`, `next-env.d.ts`, `tailwind.config.ts`, `postcss.config.js`, `app/layout.tsx`, `app/page.tsx`, `app/globals.css`
 - Test: none (pure scaffolding, verified by build)
 
 **Interfaces:**
+
 - Consumes: nothing (first task)
 - Produces: a bootable Next.js app at `app/page.tsx` rendering placeholder content; `@/*` import alias resolving to repo root; Tailwind available via `@tailwind base/components/utilities` in `app/globals.css`
 
@@ -87,7 +89,11 @@ git rm -r src public/index.html public/manifest.json public/browserconfig.xml fe
   },
   "browserslist": {
     "production": [">0.3%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
 ```
@@ -119,9 +125,9 @@ export default nextConfig;
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [{ "name": "next" }],
+    "plugins": [{"name": "next"}],
     "baseUrl": ".",
-    "paths": { "@/*": ["./*"] }
+    "paths": {"@/*": ["./*"]}
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
@@ -138,15 +144,15 @@ export default nextConfig;
 - [ ] **Step 6: Add `tailwind.config.ts`**
 
 ```ts
-import type { Config } from "tailwindcss";
+import type {Config} from "tailwindcss";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 };
 
 export default config;
@@ -158,8 +164,8 @@ export default config;
 module.exports = {
   plugins: {
     tailwindcss: {},
-    autoprefixer: {},
-  },
+    autoprefixer: {}
+  }
 };
 ```
 
@@ -178,10 +184,10 @@ module.exports = {
 import "./globals.css";
 
 export const metadata = {
-  title: "Jitesh Kumar",
+  title: "Jitesh Kumar"
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body>{children}</body>
@@ -218,9 +224,11 @@ git commit -m "chore: remove legacy CRA app, scaffold Next.js + TypeScript + Tai
 ### Task 2: Project data model, split logic, and test infrastructure
 
 **Files:**
+
 - Create: `lib/types.ts`, `lib/projects.ts`, `lib/projects.test.ts`, `vitest.config.ts`, `vitest.setup.ts`
 
 **Interfaces:**
+
 - Consumes: nothing new
 - Produces: `Project` interface (`slug: string; title: string; description: string; tags: string[]; github?: string; live?: string; image?: string; highlighted: boolean; order: number;`) from `lib/types.ts`; `splitProjects(projects: Project[]): { featured: Project[]; more: Project[] }` from `lib/projects.ts`, used by Task 8's `Projects` component
 
@@ -228,7 +236,7 @@ git commit -m "chore: remove legacy CRA app, scaffold Next.js + TypeScript + Tai
 
 ```ts
 // vitest.config.ts
-import { defineConfig } from "vitest/config";
+import {defineConfig} from "vitest/config";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 
@@ -237,13 +245,13 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: ["./vitest.setup.ts"],
+    setupFiles: ["./vitest.setup.ts"]
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "."),
-    },
-  },
+      "@": path.resolve(__dirname, ".")
+    }
+  }
 });
 ```
 
@@ -273,9 +281,9 @@ export interface Project {
 
 ```ts
 // lib/projects.test.ts
-import { describe, it, expect } from "vitest";
-import { splitProjects } from "./projects";
-import type { Project } from "./types";
+import {describe, it, expect} from "vitest";
+import {splitProjects} from "./projects";
+import type {Project} from "./types";
 
 function makeProject(overrides: Partial<Project>): Project {
   return {
@@ -285,26 +293,26 @@ function makeProject(overrides: Partial<Project>): Project {
     tags: [],
     highlighted: false,
     order: 0,
-    ...overrides,
+    ...overrides
   };
 }
 
 describe("splitProjects", () => {
   it("separates highlighted from non-highlighted projects, sorted by order", () => {
     const projects = [
-      makeProject({ slug: "a", highlighted: true, order: 2 }),
-      makeProject({ slug: "b", highlighted: false, order: 1 }),
-      makeProject({ slug: "c", highlighted: true, order: 1 }),
+      makeProject({slug: "a", highlighted: true, order: 2}),
+      makeProject({slug: "b", highlighted: false, order: 1}),
+      makeProject({slug: "c", highlighted: true, order: 1})
     ];
 
-    const { featured, more } = splitProjects(projects);
+    const {featured, more} = splitProjects(projects);
 
-    expect(featured.map((p) => p.slug)).toEqual(["c", "a"]);
-    expect(more.map((p) => p.slug)).toEqual(["b"]);
+    expect(featured.map(p => p.slug)).toEqual(["c", "a"]);
+    expect(more.map(p => p.slug)).toEqual(["b"]);
   });
 
   it("returns empty arrays when given no projects", () => {
-    expect(splitProjects([])).toEqual({ featured: [], more: [] });
+    expect(splitProjects([])).toEqual({featured: [], more: []});
   });
 });
 ```
@@ -321,13 +329,16 @@ Expected: FAIL — `Cannot find module './projects'` (file doesn't exist yet).
 
 ```ts
 // lib/projects.ts
-import type { Project } from "./types";
+import type {Project} from "./types";
 
-export function splitProjects(projects: Project[]): { featured: Project[]; more: Project[] } {
+export function splitProjects(projects: Project[]): {
+  featured: Project[];
+  more: Project[];
+} {
   const sorted = [...projects].sort((a, b) => a.order - b.order);
   return {
-    featured: sorted.filter((p) => p.highlighted),
-    more: sorted.filter((p) => !p.highlighted),
+    featured: sorted.filter(p => p.highlighted),
+    more: sorted.filter(p => !p.highlighted)
   };
 }
 ```
@@ -352,9 +363,11 @@ git commit -m "feat: add project data model and highlighted/more split logic"
 ### Task 3: Design tokens — fonts, color system, light/dark CSS variables
 
 **Files:**
+
 - Modify: `app/globals.css`, `tailwind.config.ts`, `app/layout.tsx`
 
 **Interfaces:**
+
 - Consumes: nothing new
 - Produces: Tailwind color utilities `bg-bg`, `bg-surface`, `text-fg`, `text-fg-muted`, `text-accent`, `border-border` (mapped to CSS vars, swap value under `.dark`); `font-display` and `font-mono` Tailwind font utilities (mapped to `--font-display` / `--font-mono` CSS vars set by `next/font` in `app/layout.tsx`). Every later component task uses these tokens instead of raw Tailwind colors.
 
@@ -394,7 +407,7 @@ body {
 
 ```ts
 // tailwind.config.ts
-import type { Config } from "tailwindcss";
+import type {Config} from "tailwindcss";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
@@ -407,15 +420,15 @@ const config: Config = {
         fg: "var(--fg)",
         "fg-muted": "var(--fg-muted)",
         accent: "var(--accent)",
-        border: "var(--border)",
+        border: "var(--border)"
       },
       fontFamily: {
         display: ["var(--font-display)"],
-        mono: ["var(--font-mono)"],
-      },
-    },
+        mono: ["var(--font-mono)"]
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };
 
 export default config;
@@ -427,28 +440,32 @@ export default config;
 
 ```tsx
 // app/layout.tsx
-import { Fraunces, JetBrains_Mono } from "next/font/google";
+import {Fraunces, JetBrains_Mono} from "next/font/google";
 import "./globals.css";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700"]
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400", "500"],
+  weight: ["400", "500"]
 });
 
 export const metadata = {
-  title: "Jitesh Kumar",
+  title: "Jitesh Kumar"
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-bg font-sans text-fg antialiased">{children}</body>
     </html>
   );
@@ -475,10 +492,12 @@ git commit -m "feat: add light/dark design tokens and self-hosted fonts"
 ### Task 4: Theme system — ThemeProvider + ThemeToggle
 
 **Files:**
+
 - Create: `components/theme/ThemeProvider.tsx`, `components/theme/ThemeToggle.tsx`, `components/theme/ThemeToggle.test.tsx`
 - Modify: `app/layout.tsx`
 
 **Interfaces:**
+
 - Consumes: Tailwind tokens from Task 3 (`border-border`, `text-fg`)
 - Produces: `<ThemeProvider>` wraps `{children}` in `app/layout.tsx`; `<ThemeToggle />` used by Task 5's `Nav` component
 
@@ -486,10 +505,10 @@ git commit -m "feat: add light/dark design tokens and self-hosted fonts"
 
 ```tsx
 // components/theme/ThemeToggle.test.tsx
-import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { ThemeProvider } from "next-themes";
-import { ThemeToggle } from "./ThemeToggle";
+import {describe, it, expect} from "vitest";
+import {render, screen, fireEvent} from "@testing-library/react";
+import {ThemeProvider} from "next-themes";
+import {ThemeToggle} from "./ThemeToggle";
 
 function renderWithTheme() {
   return render(
@@ -502,7 +521,7 @@ function renderWithTheme() {
 describe("ThemeToggle", () => {
   it("toggles the html element's dark class on click", () => {
     renderWithTheme();
-    const button = screen.getByRole("button", { name: /toggle theme/i });
+    const button = screen.getByRole("button", {name: /toggle theme/i});
 
     fireEvent.click(button);
 
@@ -525,10 +544,10 @@ Expected: FAIL — `Cannot find module './ThemeToggle'`.
 // components/theme/ThemeProvider.tsx
 "use client";
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import type { ReactNode } from "react";
+import {ThemeProvider as NextThemesProvider} from "next-themes";
+import type {ReactNode} from "react";
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
+export function ThemeProvider({children}: {children: ReactNode}) {
   return (
     <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
       {children}
@@ -543,11 +562,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 // components/theme/ThemeToggle.tsx
 "use client";
 
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import {useTheme} from "next-themes";
+import {useEffect, useState} from "react";
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const {resolvedTheme, setTheme} = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -581,29 +600,33 @@ Expected: PASS — 1 test passed.
 
 ```tsx
 // app/layout.tsx
-import { Fraunces, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import {Fraunces, JetBrains_Mono} from "next/font/google";
+import {ThemeProvider} from "@/components/theme/ThemeProvider";
 import "./globals.css";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700"]
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400", "500"],
+  weight: ["400", "500"]
 });
 
 export const metadata = {
-  title: "Jitesh Kumar",
+  title: "Jitesh Kumar"
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${fraunces.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-bg font-sans text-fg antialiased">
         <ThemeProvider>{children}</ThemeProvider>
       </body>
@@ -624,9 +647,11 @@ git commit -m "feat: add light/dark theme provider and toggle"
 ### Task 5: Nav component
 
 **Files:**
+
 - Create: `components/nav/Nav.tsx`, `components/nav/Nav.test.tsx`, `lib/data/profile.ts`
 
 **Interfaces:**
+
 - Consumes: `<ThemeToggle />` from Task 4
 - Produces: `profile` object from `lib/data/profile.ts` (`{ name, role, tagline, email, links: { github, linkedin, leetcode }, resumeUrl }`) — reused by Task 6 (Hero) and Task 12 (Footer); `<Nav />` used by Task 13's `app/page.tsx`
 
@@ -643,9 +668,9 @@ export const profile = {
   links: {
     github: "https://github.com/JITESH-KUMAR05",
     linkedin: "https://www.linkedin.com/in/jiteshkumar05/",
-    leetcode: "https://leetcode.com/u/jitesh_kumar05",
+    leetcode: "https://leetcode.com/u/jitesh_kumar05"
   },
-  resumeUrl: "/resume/jitesh-resume.pdf",
+  resumeUrl: "/resume/jitesh-resume.pdf"
 };
 ```
 
@@ -653,10 +678,10 @@ export const profile = {
 
 ```tsx
 // components/nav/Nav.test.tsx
-import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { ThemeProvider } from "next-themes";
-import { Nav } from "./Nav";
+import {describe, it, expect} from "vitest";
+import {render, screen, fireEvent} from "@testing-library/react";
+import {ThemeProvider} from "next-themes";
+import {Nav} from "./Nav";
 
 function renderNav() {
   return render(
@@ -670,20 +695,24 @@ describe("Nav", () => {
   it("renders the site name and all section links", () => {
     renderNav();
     expect(screen.getAllByText("Jitesh Kumar").length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: "Experience" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Projects" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Contact" })).toBeInTheDocument();
+    expect(screen.getByRole("link", {name: "Experience"})).toBeInTheDocument();
+    expect(screen.getByRole("link", {name: "Projects"})).toBeInTheDocument();
+    expect(screen.getByRole("link", {name: "Contact"})).toBeInTheDocument();
   });
 
   it("opens and closes the mobile menu on toggle click", () => {
     renderNav();
-    const toggle = screen.getByRole("button", { name: /toggle menu/i });
+    const toggle = screen.getByRole("button", {name: /toggle menu/i});
 
     fireEvent.click(toggle);
-    expect(screen.getByRole("button", { name: /toggle menu/i })).toHaveTextContent("Close");
+    expect(
+      screen.getByRole("button", {name: /toggle menu/i})
+    ).toHaveTextContent("Close");
 
     fireEvent.click(toggle);
-    expect(screen.getByRole("button", { name: /toggle menu/i })).toHaveTextContent("Menu");
+    expect(
+      screen.getByRole("button", {name: /toggle menu/i})
+    ).toHaveTextContent("Menu");
   });
 });
 ```
@@ -702,16 +731,16 @@ Expected: FAIL — `Cannot find module './Nav'`.
 // components/nav/Nav.tsx
 "use client";
 
-import { useState } from "react";
-import { profile } from "@/lib/data/profile";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import {useState} from "react";
+import {profile} from "@/lib/data/profile";
+import {ThemeToggle} from "@/components/theme/ThemeToggle";
 
 const sections = [
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#education", label: "Education" },
-  { href: "#contact", label: "Contact" },
+  {href: "#experience", label: "Experience"},
+  {href: "#projects", label: "Projects"},
+  {href: "#skills", label: "Skills"},
+  {href: "#education", label: "Education"},
+  {href: "#contact", label: "Contact"}
 ];
 
 export function Nav() {
@@ -724,8 +753,12 @@ export function Nav() {
           {profile.name}
         </a>
         <nav className="hidden items-center gap-6 font-mono text-sm md:flex">
-          {sections.map((s) => (
-            <a key={s.href} href={s.href} className="text-fg-muted hover:text-fg">
+          {sections.map(s => (
+            <a
+              key={s.href}
+              href={s.href}
+              className="text-fg-muted hover:text-fg"
+            >
               {s.label}
             </a>
           ))}
@@ -735,15 +768,20 @@ export function Nav() {
           type="button"
           aria-label="Toggle menu"
           className="font-mono text-sm text-fg md:hidden"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen(v => !v)}
         >
           {open ? "Close" : "Menu"}
         </button>
       </div>
       {open && (
         <nav className="flex flex-col gap-4 border-t border-border px-6 py-4 font-mono text-sm md:hidden">
-          {sections.map((s) => (
-            <a key={s.href} href={s.href} onClick={() => setOpen(false)} className="text-fg-muted hover:text-fg">
+          {sections.map(s => (
+            <a
+              key={s.href}
+              href={s.href}
+              onClick={() => setOpen(false)}
+              className="text-fg-muted hover:text-fg"
+            >
               {s.label}
             </a>
           ))}
@@ -775,9 +813,11 @@ git commit -m "feat: add responsive nav with theme toggle and mobile menu"
 ### Task 6: Hero section
 
 **Files:**
+
 - Create: `components/hero/Hero.tsx`
 
 **Interfaces:**
+
 - Consumes: `profile` from `lib/data/profile.ts` (Task 5)
 - Produces: `<Hero />` used by Task 13's `app/page.tsx`
 
@@ -789,9 +829,11 @@ Checks for `public/images/profile.jpg` at build time via `fs.existsSync` and ren
 // components/hero/Hero.tsx
 import fs from "node:fs";
 import path from "node:path";
-import { profile } from "@/lib/data/profile";
+import {profile} from "@/lib/data/profile";
 
-const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "images", "profile.jpg"));
+const hasPhoto = fs.existsSync(
+  path.join(process.cwd(), "public", "images", "profile.jpg")
+);
 
 export function Hero() {
   return (
@@ -801,20 +843,40 @@ export function Hero() {
     >
       <div className="flex flex-col gap-6">
         <p className="font-mono text-sm text-accent">Hi, I'm</p>
-        <h1 className="font-display text-4xl font-semibold text-fg sm:text-5xl">{profile.name}</h1>
+        <h1 className="font-display text-4xl font-semibold text-fg sm:text-5xl">
+          {profile.name}
+        </h1>
         <h2 className="text-xl text-fg-muted sm:text-2xl">{profile.role}</h2>
         <p className="max-w-2xl text-fg-muted">{profile.tagline}</p>
         <div className="flex flex-wrap gap-4 font-mono text-sm">
-          <a href={profile.links.github} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             GitHub
           </a>
-          <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             LinkedIn
           </a>
-          <a href={profile.links.leetcode} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={profile.links.leetcode}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             LeetCode
           </a>
-          <a href={`mailto:${profile.email}`} className="text-accent hover:underline">
+          <a
+            href={`mailto:${profile.email}`}
+            className="text-accent hover:underline"
+          >
             Email
           </a>
           <a
@@ -858,9 +920,11 @@ git commit -m "feat: add hero section"
 ### Task 7: Experience section
 
 **Files:**
+
 - Create: `components/experience/Experience.tsx`, `lib/data/experience.ts`
 
 **Interfaces:**
+
 - Consumes: nothing new
 - Produces: `ExperienceEntry` type and `experience: ExperienceEntry[]` from `lib/data/experience.ts`; `<Experience />` used by Task 13
 
@@ -886,9 +950,9 @@ export const experience: ExperienceEntry[] = [
       "Built and shipped usjtechnologies.com, a full-stack B2B e-commerce platform (React 19, Supabase/PostgreSQL) with a 100+ SKU catalogue, PostgreSQL full-text search, and a multi-item quote-request workflow with automated email via serverless Deno edge functions.",
       "Designed a 16-table PostgreSQL schema secured with database-level Row-Level Security and 3-tier Role-Based Access Control (admin/manager/staff); identified and patched a privilege-escalation vulnerability with a BEFORE UPDATE trigger, enforcing authorization at the database layer.",
       "Architected the chalokumbh.com low-latency live-streaming pipeline (MediaMTX, HLS/WebRTC, ONVIF PTZ), broadcasting real-time temple ceremonies to YouTube and a custom app for the Kumbh Mela 2027.",
-      "Drove end-to-end delivery and stakeholder onboarding for chalokumbh.com — turning requirements gathered directly from temple administrators into technical architecture and onboarding 3+ partner temples onto the platform.",
-    ],
-  },
+      "Drove end-to-end delivery and stakeholder onboarding for chalokumbh.com — turning requirements gathered directly from temple administrators into technical architecture and onboarding 3+ partner temples onto the platform."
+    ]
+  }
 ];
 ```
 
@@ -896,24 +960,28 @@ export const experience: ExperienceEntry[] = [
 
 ```tsx
 // components/experience/Experience.tsx
-import { experience } from "@/lib/data/experience";
+import {experience} from "@/lib/data/experience";
 
 export function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-5xl px-6 py-20">
-      <h2 className="font-display text-3xl font-semibold text-fg">Experience</h2>
+      <h2 className="font-display text-3xl font-semibold text-fg">
+        Experience
+      </h2>
       <div className="mt-8 flex flex-col gap-10">
-        {experience.map((entry) => (
+        {experience.map(entry => (
           <div key={entry.company} className="flex flex-col gap-3">
             <div className="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
               <h3 className="font-display text-xl font-semibold text-fg">
                 {entry.role} · {entry.company}
               </h3>
-              <span className="font-mono text-sm text-fg-muted">{entry.date}</span>
+              <span className="font-mono text-sm text-fg-muted">
+                {entry.date}
+              </span>
             </div>
             <p className="font-mono text-xs text-fg-muted">{entry.location}</p>
             <ul className="mt-2 flex flex-col gap-2 text-fg-muted">
-              {entry.bullets.map((bullet) => (
+              {entry.bullets.map(bullet => (
                 <li key={bullet} className="pl-4 -indent-4">
                   – {bullet}
                 </li>
@@ -947,10 +1015,12 @@ git commit -m "feat: add experience section"
 ### Task 8: TinaCMS setup, seed project content, Projects components
 
 **Files:**
+
 - Create: `tina/config.ts`, `content/projects/voiceflow.md`, `content/projects/reachinbox.md`, `content/projects/amebot.md`, `content/projects/travel-together.md`, `content/projects/heritage-hues.md`, `content/projects/student-performance.md`, `lib/getProjects.ts`, `lib/getProjects.test.ts`, `components/projects/ProjectCard.tsx`, `components/projects/Projects.tsx`
 - Modify: `package.json` (build script, new deps)
 
 **Interfaces:**
+
 - Consumes: `Project` type and `splitProjects()` from Task 2
 - Produces: `getProjects(): Project[]` from `lib/getProjects.ts`; `<Projects />` used by Task 13
 
@@ -967,7 +1037,7 @@ npm install --save-dev @tinacms/cli
 
 ```ts
 // tina/config.ts
-import { defineConfig } from "tinacms";
+import {defineConfig} from "tinacms";
 
 export default defineConfig({
   branch: "main",
@@ -975,13 +1045,13 @@ export default defineConfig({
   token: process.env.TINA_TOKEN ?? "",
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
+    publicFolder: "public"
   },
   media: {
     tina: {
       mediaRoot: "uploads",
-      publicFolder: "public",
-    },
+      publicFolder: "public"
+    }
   },
   schema: {
     collections: [
@@ -991,21 +1061,37 @@ export default defineConfig({
         path: "content/projects",
         format: "md",
         ui: {
-          router: () => null,
+          router: () => null
         },
         fields: [
-          { type: "string", name: "title", label: "Title", isTitle: true, required: true },
-          { type: "string", name: "description", label: "Description", ui: { component: "textarea" }, required: true },
-          { type: "string", name: "tags", label: "Tags", list: true },
-          { type: "string", name: "github", label: "GitHub URL" },
-          { type: "string", name: "live", label: "Live URL" },
-          { type: "image", name: "image", label: "Screenshot" },
-          { type: "boolean", name: "highlighted", label: "Highlighted (show in Featured Projects)" },
-          { type: "number", name: "order", label: "Sort order" },
-        ],
-      },
-    ],
-  },
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            ui: {component: "textarea"},
+            required: true
+          },
+          {type: "string", name: "tags", label: "Tags", list: true},
+          {type: "string", name: "github", label: "GitHub URL"},
+          {type: "string", name: "live", label: "Live URL"},
+          {type: "image", name: "image", label: "Screenshot"},
+          {
+            type: "boolean",
+            name: "highlighted",
+            label: "Highlighted (show in Featured Projects)"
+          },
+          {type: "number", name: "order", label: "Sort order"}
+        ]
+      }
+    ]
+  }
 });
 ```
 
@@ -1013,7 +1099,9 @@ export default defineConfig({
 
 ```md
 <!-- content/projects/voiceflow.md -->
+
 ---
+
 title: "VoiceFlow"
 description: "Low-latency AI voice agent integrating Salesforce Agentforce for live CRM automation during voice sessions. Cut end-to-end backend latency 70% (under 2s) via Python multithreading and async WebSocket streams for concurrent audio pipelines. 1st Rank (All India), Murf AI Coding Challenge 5."
 tags: ["React.js", "FastAPI", "Python", "WebSocket", "Salesforce Agentforce"]
@@ -1026,7 +1114,9 @@ order: 1
 
 ```md
 <!-- content/projects/reachinbox.md -->
+
 ---
+
 title: "ReachInbox"
 description: "Distributed email scheduling backend processing thousands of queued jobs via BullMQ and Redis, horizontally scaled across 5 concurrent workers, with atomic rate limiting and zero data loss across restarts."
 tags: ["Node.js", "TypeScript", "Express.js", "PostgreSQL", "BullMQ", "Redis"]
@@ -1039,7 +1129,9 @@ order: 2
 
 ```md
 <!-- content/projects/amebot.md -->
+
 ---
+
 title: "AmeBot"
 description: "Retrieval-Augmented Generation support pipeline deployed on Azure App Service with a 3-layer hallucination-prevention system for context-grounded production responses."
 tags: ["FastAPI", "Azure OpenAI", "FAISS", "RAG"]
@@ -1052,7 +1144,9 @@ order: 3
 
 ```md
 <!-- content/projects/travel-together.md -->
+
 ---
+
 title: "Travel Together"
 description: "AI-driven travel application offering personalized itineraries based on user preferences and travel styles, with secure authentication and an interactive admin dashboard."
 tags: ["React", "Node.js", "Firebase"]
@@ -1065,7 +1159,9 @@ order: 4
 
 ```md
 <!-- content/projects/heritage-hues.md -->
+
 ---
+
 title: "Heritage Hues"
 description: "Cross-platform tourism app showcasing Indian heritage, built with FlutterFlow and Supabase. Aggregates geolocation-based heritage data with a searchable market module."
 tags: ["FlutterFlow", "Supabase"]
@@ -1078,7 +1174,9 @@ order: 5
 
 ```md
 <!-- content/projects/student-performance.md -->
+
 ---
+
 title: "Student Performance Prediction"
 description: "Full-stack ML web app predicting student math scores (88%+ accuracy) using Flask and scikit-learn with a responsive UI. Explored Azure and AWS for containerized ML deployment."
 tags: ["Flask", "scikit-learn", "Python"]
@@ -1093,8 +1191,8 @@ order: 6
 
 ```ts
 // lib/getProjects.test.ts
-import { describe, it, expect } from "vitest";
-import { getProjects } from "./getProjects";
+import {describe, it, expect} from "vitest";
+import {getProjects} from "./getProjects";
 
 describe("getProjects", () => {
   it("loads all seeded project files with a valid shape", () => {
@@ -1111,8 +1209,8 @@ describe("getProjects", () => {
   it("marks exactly the three resume-headline projects as highlighted", () => {
     const projects = getProjects();
     const highlightedTitles = projects
-      .filter((p) => p.highlighted)
-      .map((p) => p.title)
+      .filter(p => p.highlighted)
+      .map(p => p.title)
       .sort();
     expect(highlightedTitles).toEqual(["AmeBot", "ReachInbox", "VoiceFlow"]);
   });
@@ -1134,16 +1232,16 @@ Expected: FAIL — `Cannot find module './getProjects'`.
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import type { Project } from "./types";
+import type {Project} from "./types";
 
 const PROJECTS_DIR = path.join(process.cwd(), "content", "projects");
 
 export function getProjects(): Project[] {
-  const files = fs.readdirSync(PROJECTS_DIR).filter((f) => f.endsWith(".md"));
+  const files = fs.readdirSync(PROJECTS_DIR).filter(f => f.endsWith(".md"));
 
-  return files.map((file) => {
+  return files.map(file => {
     const raw = fs.readFileSync(path.join(PROJECTS_DIR, file), "utf8");
-    const { data } = matter(raw);
+    const {data} = matter(raw);
 
     return {
       slug: file.replace(/\.md$/, ""),
@@ -1154,7 +1252,7 @@ export function getProjects(): Project[] {
       live: data.live || undefined,
       image: data.image || undefined,
       highlighted: Boolean(data.highlighted),
-      order: Number(data.order ?? 0),
+      order: Number(data.order ?? 0)
     };
   });
 }
@@ -1172,9 +1270,9 @@ Expected: PASS — 2 tests passed.
 
 ```tsx
 // components/projects/ProjectCard.tsx
-import type { Project } from "@/lib/types";
+import type {Project} from "@/lib/types";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({project}: {project: Project}) {
   return (
     <article className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-6">
       {project.image && (
@@ -1184,10 +1282,12 @@ export function ProjectCard({ project }: { project: Project }) {
           className="aspect-video w-full rounded-md object-cover"
         />
       )}
-      <h3 className="font-display text-xl font-semibold text-fg">{project.title}</h3>
+      <h3 className="font-display text-xl font-semibold text-fg">
+        {project.title}
+      </h3>
       <p className="text-sm text-fg-muted">{project.description}</p>
       <ul className="flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
+        {project.tags.map(tag => (
           <li
             key={tag}
             className="rounded-full border border-border px-2.5 py-1 font-mono text-xs text-fg-muted"
@@ -1198,12 +1298,22 @@ export function ProjectCard({ project }: { project: Project }) {
       </ul>
       <div className="mt-auto flex gap-4 pt-2 font-mono text-sm">
         {project.github && (
-          <a href={project.github} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             GitHub →
           </a>
         )}
         {project.live && (
-          <a href={project.live} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             Live →
           </a>
         )}
@@ -1217,27 +1327,31 @@ export function ProjectCard({ project }: { project: Project }) {
 
 ```tsx
 // components/projects/Projects.tsx
-import { getProjects } from "@/lib/getProjects";
-import { splitProjects } from "@/lib/projects";
-import { ProjectCard } from "./ProjectCard";
+import {getProjects} from "@/lib/getProjects";
+import {splitProjects} from "@/lib/projects";
+import {ProjectCard} from "./ProjectCard";
 
 export function Projects() {
-  const { featured, more } = splitProjects(getProjects());
+  const {featured, more} = splitProjects(getProjects());
 
   return (
     <>
       <section id="projects" className="mx-auto max-w-5xl px-6 py-20">
-        <h2 className="font-display text-3xl font-semibold text-fg">Featured Projects</h2>
+        <h2 className="font-display text-3xl font-semibold text-fg">
+          Featured Projects
+        </h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          {featured.map((project) => (
+          {featured.map(project => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
       </section>
       <section id="more-projects" className="mx-auto max-w-5xl px-6 py-12">
-        <h2 className="font-display text-2xl font-semibold text-fg">More Projects</h2>
+        <h2 className="font-display text-2xl font-semibold text-fg">
+          More Projects
+        </h2>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {more.map((project) => (
+          {more.map(project => (
             <ProjectCard key={project.slug} project={project} />
           ))}
         </div>
@@ -1281,9 +1395,11 @@ git commit -m "feat: add TinaCMS-managed projects collection and Featured/More P
 ### Task 9: Skills section
 
 **Files:**
+
 - Create: `components/skills/Skills.tsx`, `lib/data/skills.ts`
 
 **Interfaces:**
+
 - Consumes: nothing new
 - Produces: `SkillGroup` type and `skillGroups: SkillGroup[]` from `lib/data/skills.ts`; `<Skills />` used by Task 13
 
@@ -1297,18 +1413,76 @@ export interface SkillGroup {
 }
 
 export const skillGroups: SkillGroup[] = [
-  { category: "Languages", items: ["C++", "JavaScript", "TypeScript", "Python", "Java", "SQL", "Bash/Shell"] },
-  { category: "Frontend", items: ["React.js", "HTML5", "CSS3", "Tailwind CSS", "REST APIs", "WebSocket", "WebRTC"] },
-  { category: "Backend", items: ["Node.js", "Express.js", "FastAPI", "PostgreSQL", "Supabase", "Redis", "BullMQ"] },
+  {
+    category: "Languages",
+    items: [
+      "C++",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Java",
+      "SQL",
+      "Bash/Shell"
+    ]
+  },
+  {
+    category: "Frontend",
+    items: [
+      "React.js",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "REST APIs",
+      "WebSocket",
+      "WebRTC"
+    ]
+  },
+  {
+    category: "Backend",
+    items: [
+      "Node.js",
+      "Express.js",
+      "FastAPI",
+      "PostgreSQL",
+      "Supabase",
+      "Redis",
+      "BullMQ"
+    ]
+  },
   {
     category: "Cloud & DevOps",
-    items: ["Microsoft Azure", "AWS", "Docker", "Git", "GitHub", "Linux/Unix", "Postman", "CI/CD"],
+    items: [
+      "Microsoft Azure",
+      "AWS",
+      "Docker",
+      "Git",
+      "GitHub",
+      "Linux/Unix",
+      "Postman",
+      "CI/CD"
+    ]
   },
-  { category: "AI / ML", items: ["Azure OpenAI", "Salesforce Agentforce", "RAG", "FAISS", "LLM Integration"] },
+  {
+    category: "AI / ML",
+    items: [
+      "Azure OpenAI",
+      "Salesforce Agentforce",
+      "RAG",
+      "FAISS",
+      "LLM Integration"
+    ]
+  },
   {
     category: "Core Concepts",
-    items: ["Data Structures & Algorithms", "System Design", "Distributed Systems", "OOP", "DBMS", "Agile"],
-  },
+    items: [
+      "Data Structures & Algorithms",
+      "System Design",
+      "Distributed Systems",
+      "OOP",
+      "DBMS",
+      "Agile"
+    ]
+  }
 ];
 ```
 
@@ -1316,19 +1490,24 @@ export const skillGroups: SkillGroup[] = [
 
 ```tsx
 // components/skills/Skills.tsx
-import { skillGroups } from "@/lib/data/skills";
+import {skillGroups} from "@/lib/data/skills";
 
 export function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-5xl px-6 py-20">
       <h2 className="font-display text-3xl font-semibold text-fg">Skills</h2>
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
-        {skillGroups.map((group) => (
+        {skillGroups.map(group => (
           <div key={group.category}>
-            <h3 className="font-mono text-sm uppercase tracking-wide text-accent">{group.category}</h3>
+            <h3 className="font-mono text-sm uppercase tracking-wide text-accent">
+              {group.category}
+            </h3>
             <ul className="mt-3 flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <li key={item} className="rounded-full border border-border px-3 py-1 text-sm text-fg-muted">
+              {group.items.map(item => (
+                <li
+                  key={item}
+                  className="rounded-full border border-border px-3 py-1 text-sm text-fg-muted"
+                >
                   {item}
                 </li>
               ))}
@@ -1361,9 +1540,11 @@ git commit -m "feat: add skills section"
 ### Task 10: Leadership and Achievements sections
 
 **Files:**
+
 - Create: `components/leadership/Leadership.tsx`, `components/achievements/Achievements.tsx`, `lib/data/leadership.ts`, `lib/data/achievements.ts`
 
 **Interfaces:**
+
 - Consumes: nothing new
 - Produces: `<Leadership />` and `<Achievements />` used by Task 13
 
@@ -1384,17 +1565,17 @@ export const leadership: LeadershipEntry[] = [
     org: "Microsoft",
     date: "Jul 2025 – Present",
     bullets: [
-      "Delivered 5+ technical workshops on Microsoft Azure and GitHub Copilot, impacting 1,000+ student developers across campus programs.",
-    ],
+      "Delivered 5+ technical workshops on Microsoft Azure and GitHub Copilot, impacting 1,000+ student developers across campus programs."
+    ]
   },
   {
     role: "Vice Chair",
     org: "IEEE SSIT, Anurag University Chapter",
     date: "Jan 2024 – Dec 2025",
     bullets: [
-      "Led a 20+ member team to execute 30+ technical events and hackathons, drawing 500+ participants per event over two years.",
-    ],
-  },
+      "Led a 20+ member team to execute 30+ technical events and hackathons, drawing 500+ participants per event over two years."
+    ]
+  }
 ];
 ```
 
@@ -1410,13 +1591,18 @@ export interface Achievement {
 export const achievements: Achievement[] = [
   {
     title: "5x Hackathon Winner",
-    detail: "Including Murf AI Coding Challenge 5 — 1st Position, All India, against hundreds of participants.",
+    detail:
+      "Including Murf AI Coding Challenge 5 — 1st Position, All India, against hundreds of participants."
   },
-  { title: "LeetCode Knight", detail: "400+ problems solved, top 5.67% rank, peak contest rating 1857." },
+  {
+    title: "LeetCode Knight",
+    detail: "400+ problems solved, top 5.67% rank, peak contest rating 1857."
+  },
   {
     title: "IEEE Publication",
-    detail: 'First-authored and presented "AI-Powered Voice Agent System" at the 2026 IEEE I3CTCON international conference.',
-  },
+    detail:
+      'First-authored and presented "AI-Powered Voice Agent System" at the 2026 IEEE I3CTCON international conference.'
+  }
 ];
 ```
 
@@ -1424,22 +1610,28 @@ export const achievements: Achievement[] = [
 
 ```tsx
 // components/leadership/Leadership.tsx
-import { leadership } from "@/lib/data/leadership";
+import {leadership} from "@/lib/data/leadership";
 
 export function Leadership() {
   return (
     <section id="leadership" className="mx-auto max-w-5xl px-6 py-20">
-      <h2 className="font-display text-3xl font-semibold text-fg">Leadership & Roles</h2>
+      <h2 className="font-display text-3xl font-semibold text-fg">
+        Leadership & Roles
+      </h2>
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
-        {leadership.map((entry) => (
+        {leadership.map(entry => (
           <div key={entry.role} className="rounded-lg border border-border p-6">
             <div className="flex items-baseline justify-between gap-2">
-              <h3 className="font-display text-lg font-semibold text-fg">{entry.role}</h3>
-              <span className="font-mono text-xs text-fg-muted">{entry.date}</span>
+              <h3 className="font-display text-lg font-semibold text-fg">
+                {entry.role}
+              </h3>
+              <span className="font-mono text-xs text-fg-muted">
+                {entry.date}
+              </span>
             </div>
             <p className="font-mono text-xs text-fg-muted">{entry.org}</p>
             <ul className="mt-3 flex flex-col gap-2 text-sm text-fg-muted">
-              {entry.bullets.map((b) => (
+              {entry.bullets.map(b => (
                 <li key={b}>{b}</li>
               ))}
             </ul>
@@ -1455,16 +1647,20 @@ export function Leadership() {
 
 ```tsx
 // components/achievements/Achievements.tsx
-import { achievements } from "@/lib/data/achievements";
+import {achievements} from "@/lib/data/achievements";
 
 export function Achievements() {
   return (
     <section id="achievements" className="mx-auto max-w-5xl px-6 py-20">
-      <h2 className="font-display text-3xl font-semibold text-fg">Achievements</h2>
+      <h2 className="font-display text-3xl font-semibold text-fg">
+        Achievements
+      </h2>
       <ul className="mt-8 grid gap-6 sm:grid-cols-3">
-        {achievements.map((a) => (
+        {achievements.map(a => (
           <li key={a.title} className="rounded-lg border border-border p-6">
-            <p className="font-display text-lg font-semibold text-fg">{a.title}</p>
+            <p className="font-display text-lg font-semibold text-fg">
+              {a.title}
+            </p>
             <p className="mt-2 text-sm text-fg-muted">{a.detail}</p>
           </li>
         ))}
@@ -1494,9 +1690,11 @@ git commit -m "feat: add leadership and achievements sections"
 ### Task 11: Education and Certifications sections, certificate assets
 
 **Files:**
+
 - Create: `components/education/Education.tsx`, `components/certifications/Certifications.tsx`, `lib/data/education.ts`, `lib/data/certifications.ts`, `public/certificates/*.pdf` (copied)
 
 **Interfaces:**
+
 - Consumes: nothing new
 - Produces: `<Education />` and `<Certifications />` used by Task 13
 
@@ -1533,14 +1731,14 @@ export const education: EducationEntry[] = [
     school: "Anurag University",
     detail: "Bachelor of Technology in Information Technology",
     score: "CGPA 8.70/10",
-    date: "2023 – 2027",
+    date: "2023 – 2027"
   },
   {
     school: "Kendriya Vidyalaya Picket, Hyderabad",
     detail: "CBSE 12th Grade",
     score: "81%",
-    date: "2021 – 2023",
-  },
+    date: "2021 – 2023"
+  }
 ];
 ```
 
@@ -1551,7 +1749,7 @@ export const education: EducationEntry[] = [
 export interface Certification {
   title: string;
   issuer: string;
-  files?: { label: string; href: string }[];
+  files?: {label: string; href: string}[];
   verifyUrl?: string;
 }
 
@@ -1560,37 +1758,65 @@ export const certifications: Certification[] = [
     title: "CCNA",
     issuer: "Cisco",
     files: [
-      { label: "Introduction to Networks", href: "/certificates/ccna-1-introduction-to-networks.pdf" },
-      { label: "Switching, Routing & Wireless Essentials", href: "/certificates/ccna-2-switching-routing-wireless.pdf" },
-      { label: "Enterprise Networking, Security & Automation", href: "/certificates/ccna-3-enterprise-networking-security.pdf" },
-    ],
+      {
+        label: "Introduction to Networks",
+        href: "/certificates/ccna-1-introduction-to-networks.pdf"
+      },
+      {
+        label: "Switching, Routing & Wireless Essentials",
+        href: "/certificates/ccna-2-switching-routing-wireless.pdf"
+      },
+      {
+        label: "Enterprise Networking, Security & Automation",
+        href: "/certificates/ccna-3-enterprise-networking-security.pdf"
+      }
+    ]
   },
   {
     title: "Python Essentials 1 & 2",
     issuer: "Cisco",
     files: [
-      { label: "Python Essentials 1", href: "/certificates/python-essentials-1.pdf" },
-      { label: "Python Essentials 2", href: "/certificates/python-essentials-2.pdf" },
-    ],
+      {
+        label: "Python Essentials 1",
+        href: "/certificates/python-essentials-1.pdf"
+      },
+      {
+        label: "Python Essentials 2",
+        href: "/certificates/python-essentials-2.pdf"
+      }
+    ]
   },
-  { title: "OCI Generative AI Professional", issuer: "Oracle" },
+  {title: "OCI Generative AI Professional", issuer: "Oracle"},
   {
     title: "Google AI Essentials",
     issuer: "Google / Coursera",
-    verifyUrl: "https://www.coursera.org/account/accomplishments/verify/WQC7KJL8DXM8",
+    verifyUrl:
+      "https://www.coursera.org/account/accomplishments/verify/WQC7KJL8DXM8"
   },
-  { title: "Applied AI", issuer: "Cisco", files: [{ label: "Certificate", href: "/certificates/applied-ai-cisco.pdf" }] },
+  {
+    title: "Applied AI",
+    issuer: "Cisco",
+    files: [{label: "Certificate", href: "/certificates/applied-ai-cisco.pdf"}]
+  },
   {
     title: "Modern AI Practitioner",
     issuer: "Cisco",
-    files: [{ label: "Certificate", href: "/certificates/modern-ai-cisco.pdf" }],
+    files: [{label: "Certificate", href: "/certificates/modern-ai-cisco.pdf"}]
   },
-  { title: "Data Science", issuer: "Cisco", files: [{ label: "Certificate", href: "/certificates/data-science-cisco.pdf" }] },
+  {
+    title: "Data Science",
+    issuer: "Cisco",
+    files: [
+      {label: "Certificate", href: "/certificates/data-science-cisco.pdf"}
+    ]
+  },
   {
     title: "Cloud Computing",
     issuer: "Cisco",
-    files: [{ label: "Certificate", href: "/certificates/cloud-computing-cisco.pdf" }],
-  },
+    files: [
+      {label: "Certificate", href: "/certificates/cloud-computing-cisco.pdf"}
+    ]
+  }
 ];
 ```
 
@@ -1598,17 +1824,22 @@ export const certifications: Certification[] = [
 
 ```tsx
 // components/education/Education.tsx
-import { education } from "@/lib/data/education";
+import {education} from "@/lib/data/education";
 
 export function Education() {
   return (
     <section id="education" className="mx-auto max-w-5xl px-6 py-20">
       <h2 className="font-display text-3xl font-semibold text-fg">Education</h2>
       <div className="mt-8 flex flex-col gap-6">
-        {education.map((entry) => (
-          <div key={entry.school} className="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+        {education.map(entry => (
+          <div
+            key={entry.school}
+            className="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline"
+          >
             <div>
-              <h3 className="font-display text-lg font-semibold text-fg">{entry.school}</h3>
+              <h3 className="font-display text-lg font-semibold text-fg">
+                {entry.school}
+              </h3>
               <p className="text-sm text-fg-muted">{entry.detail}</p>
             </div>
             <div className="text-left font-mono text-sm text-fg-muted sm:text-right">
@@ -1627,21 +1858,31 @@ export function Education() {
 
 ```tsx
 // components/certifications/Certifications.tsx
-import { certifications } from "@/lib/data/certifications";
+import {certifications} from "@/lib/data/certifications";
 
 export function Certifications() {
   return (
     <section id="certifications" className="mx-auto max-w-5xl px-6 py-20">
-      <h2 className="font-display text-3xl font-semibold text-fg">Certifications</h2>
+      <h2 className="font-display text-3xl font-semibold text-fg">
+        Certifications
+      </h2>
       <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-        {certifications.map((cert) => (
+        {certifications.map(cert => (
           <li key={cert.title} className="rounded-lg border border-border p-5">
-            <p className="font-display text-base font-semibold text-fg">{cert.title}</p>
+            <p className="font-display text-base font-semibold text-fg">
+              {cert.title}
+            </p>
             <p className="font-mono text-xs text-fg-muted">{cert.issuer}</p>
             {cert.files && (
               <div className="mt-3 flex flex-wrap gap-3 font-mono text-xs">
-                {cert.files.map((f) => (
-                  <a key={f.href} href={f.href} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+                {cert.files.map(f => (
+                  <a
+                    key={f.href}
+                    href={f.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-accent hover:underline"
+                  >
                     {f.label} →
                   </a>
                 ))}
@@ -1685,9 +1926,11 @@ git commit -m "feat: add education and certifications sections with certificate 
 ### Task 12: Footer/Contact section, resume PDF
 
 **Files:**
+
 - Create: `components/footer/Footer.tsx`, `public/resume/jitesh-resume.pdf` (copied)
 
 **Interfaces:**
+
 - Consumes: `profile` from `lib/data/profile.ts` (Task 5)
 - Produces: `<Footer />` used by Task 13; `/resume/jitesh-resume.pdf` served as a static asset (already referenced by `profile.resumeUrl` in Hero, Task 6)
 
@@ -1702,33 +1945,58 @@ cp "D:\Backup\resume\jitesh-resume.pdf" "d:\D\WebDev\jitesh\public\resume\jitesh
 
 ```tsx
 // components/footer/Footer.tsx
-import { profile } from "@/lib/data/profile";
+import {profile} from "@/lib/data/profile";
 
 export function Footer() {
   return (
     <footer id="contact" className="mx-auto max-w-5xl px-6 py-20">
       <h2 className="font-display text-3xl font-semibold text-fg">Contact</h2>
       <p className="mt-4 max-w-xl text-fg-muted">
-        Open to full-stack and backend engineering roles. Reach out directly — I read every email.
+        Open to full-stack and backend engineering roles. Reach out directly — I
+        read every email.
       </p>
       <div className="mt-6 flex flex-wrap gap-6 font-mono text-sm">
-        <a href={`mailto:${profile.email}`} className="text-accent hover:underline">
+        <a
+          href={`mailto:${profile.email}`}
+          className="text-accent hover:underline"
+        >
           {profile.email}
         </a>
-        <a href={profile.links.github} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+        <a
+          href={profile.links.github}
+          target="_blank"
+          rel="noreferrer"
+          className="text-accent hover:underline"
+        >
           GitHub
         </a>
-        <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+        <a
+          href={profile.links.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="text-accent hover:underline"
+        >
           LinkedIn
         </a>
-        <a href={profile.links.leetcode} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+        <a
+          href={profile.links.leetcode}
+          target="_blank"
+          rel="noreferrer"
+          className="text-accent hover:underline"
+        >
           LeetCode
         </a>
-        <a href={profile.resumeUrl} download className="text-accent hover:underline">
+        <a
+          href={profile.resumeUrl}
+          download
+          className="text-accent hover:underline"
+        >
           Résumé
         </a>
       </div>
-      <p className="mt-12 font-mono text-xs text-fg-muted">© {new Date().getFullYear()} {profile.name}</p>
+      <p className="mt-12 font-mono text-xs text-fg-muted">
+        © {new Date().getFullYear()} {profile.name}
+      </p>
     </footer>
   );
 }
@@ -1754,10 +2022,12 @@ git commit -m "feat: add contact footer and host resume PDF on own domain"
 ### Task 13: Assemble the page, scroll-reveal motion, smoke test
 
 **Files:**
+
 - Create: `components/motion/Reveal.tsx`, `app/page.test.tsx`
 - Modify: `app/page.tsx`
 
 **Interfaces:**
+
 - Consumes: `<Nav />` (Task 5), `<Hero />` (Task 6), `<Experience />` (Task 7), `<Projects />` (Task 8), `<Skills />` (Task 9), `<Leadership />` and `<Achievements />` (Task 10), `<Education />` and `<Certifications />` (Task 11), `<Footer />` (Task 12)
 - Produces: the complete `Home` page component, default-exported from `app/page.tsx`
 
@@ -1767,16 +2037,16 @@ git commit -m "feat: add contact footer and host resume PDF on own domain"
 // components/motion/Reveal.tsx
 "use client";
 
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import {motion} from "framer-motion";
+import type {ReactNode} from "react";
 
-export function Reveal({ children }: { children: ReactNode }) {
+export function Reveal({children}: {children: ReactNode}) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      initial={{opacity: 0, y: 16}}
+      whileInView={{opacity: 1, y: 0}}
+      viewport={{once: true, margin: "-80px"}}
+      transition={{duration: 0.5, ease: "easeOut"}}
     >
       {children}
     </motion.div>
@@ -1788,22 +2058,34 @@ export function Reveal({ children }: { children: ReactNode }) {
 
 ```tsx
 // app/page.test.tsx
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import {describe, it, expect} from "vitest";
+import {render, screen} from "@testing-library/react";
 import Home from "./page";
 
 describe("Home page", () => {
   it("renders every major section", () => {
     render(<Home />);
     expect(screen.getAllByText("Jitesh Kumar").length).toBeGreaterThan(0);
-    expect(screen.getByRole("heading", { name: "Experience" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Featured Projects" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Skills" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Leadership & Roles" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Achievements" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Education" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Certifications" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Contact" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {name: "Experience"})
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {name: "Featured Projects"})
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", {name: "Skills"})).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {name: "Leadership & Roles"})
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {name: "Achievements"})
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {name: "Education"})
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {name: "Certifications"})
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", {name: "Contact"})).toBeInTheDocument();
   });
 });
 ```
@@ -1820,17 +2102,17 @@ Expected: FAIL — current `app/page.tsx` only renders the placeholder text, non
 
 ```tsx
 // app/page.tsx
-import { Nav } from "@/components/nav/Nav";
-import { Hero } from "@/components/hero/Hero";
-import { Experience } from "@/components/experience/Experience";
-import { Projects } from "@/components/projects/Projects";
-import { Skills } from "@/components/skills/Skills";
-import { Leadership } from "@/components/leadership/Leadership";
-import { Achievements } from "@/components/achievements/Achievements";
-import { Education } from "@/components/education/Education";
-import { Certifications } from "@/components/certifications/Certifications";
-import { Footer } from "@/components/footer/Footer";
-import { Reveal } from "@/components/motion/Reveal";
+import {Nav} from "@/components/nav/Nav";
+import {Hero} from "@/components/hero/Hero";
+import {Experience} from "@/components/experience/Experience";
+import {Projects} from "@/components/projects/Projects";
+import {Skills} from "@/components/skills/Skills";
+import {Leadership} from "@/components/leadership/Leadership";
+import {Achievements} from "@/components/achievements/Achievements";
+import {Education} from "@/components/education/Education";
+import {Certifications} from "@/components/certifications/Certifications";
+import {Footer} from "@/components/footer/Footer";
+import {Reveal} from "@/components/motion/Reveal";
 
 export default function Home() {
   return (
@@ -1894,10 +2176,12 @@ git commit -m "feat: assemble full page with scroll-reveal animation"
 ### Task 14: Responsive audit, repo cleanup, final production build
 
 **Files:**
+
 - Modify: `README.md`
 - Delete: `.pre-commit-config.yaml` review (keep if still generic — see step 3), `env.example` (review — see step 3)
 
 **Interfaces:**
+
 - Consumes: the complete site from Task 13
 - Produces: final deployable state of the repo
 
@@ -1919,7 +2203,7 @@ Open `http://localhost:3000` and resize the viewport (or use browser devtools de
 
 - [ ] **Step 3: Rewrite `README.md`**
 
-```markdown
+````markdown
 # Jitesh Kumar — Portfolio
 
 Personal portfolio built with Next.js 14, TypeScript, and Tailwind CSS. Content for experience, skills, education, leadership, achievements, and certifications lives in `lib/data/`; projects are managed through a TinaCMS admin at `/admin`, backed by Markdown files in `content/projects/`.
@@ -1930,6 +2214,7 @@ Personal portfolio built with Next.js 14, TypeScript, and Tailwind CSS. Content 
 npm install
 npm run dev
 ```
+````
 
 ## Testing
 
@@ -1942,6 +2227,7 @@ npm test
 Deployed on Vercel, connected to this repo's `main` branch. Domain: `jitesh.codes`.
 
 Editing projects requires Tina Cloud env vars (`NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN`) set in the Vercel project settings — see `tina/config.ts`.
+
 ```
 
 - [ ] **Step 4: Check whether `env.example` and `.pre-commit-config.yaml` still apply, update or remove**
@@ -1949,9 +2235,11 @@ Editing projects requires Tina Cloud env vars (`NEXT_PUBLIC_TINA_CLIENT_ID`, `TI
 Read `env.example` — if it lists CRA-era vars (`REACT_APP_*`, `USE_GITHUB_DATA`, etc. from the old GitHub-fetch script), replace its contents with:
 
 ```
+
 NEXT_PUBLIC_TINA_CLIENT_ID=
 TINA_TOKEN=
-```
+
+````
 
 `.pre-commit-config.yaml`'s prettier hook (`files: ".*.(json|js|css)"`) doesn't match `.ts`/`.tsx`/`.md` — update the pattern:
 
@@ -1962,7 +2250,7 @@ repos:
   hooks:
     - id: prettier
       files: "\\.(json|js|ts|tsx|css|md)$"
-```
+````
 
 - [ ] **Step 5: Run the full test suite and production build one final time**
 

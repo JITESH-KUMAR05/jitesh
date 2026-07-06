@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type {Config} from "tailwindcss";
 
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
@@ -11,15 +11,15 @@ const config: Config = {
         fg: "var(--fg)",
         "fg-muted": "var(--fg-muted)",
         accent: "var(--accent)",
-        border: "var(--border)",
+        border: "var(--border)"
       },
       fontFamily: {
         display: ["var(--font-display)"],
-        mono: ["var(--font-mono)"],
-      },
-    },
+        mono: ["var(--font-mono)"]
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 };
 
 export default config;

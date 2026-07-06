@@ -7,7 +7,7 @@ export const profile = {
   links: {
     github: "https://github.com/JITESH-KUMAR05",
     linkedin: "https://www.linkedin.com/in/jiteshkumar05/",
-    leetcode: "https://leetcode.com/u/jitesh_kumar05",
+    leetcode: "https://leetcode.com/u/jitesh_kumar05"
   },
-  resumeUrl: "/resume/jitesh-resume.pdf",
+  resumeUrl: "/resume/jitesh-resume.pdf"
 };

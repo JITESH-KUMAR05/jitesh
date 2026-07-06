@@ -1,8 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
-import { profile } from "@/lib/data/profile";
+import {profile} from "@/lib/data/profile";
 
-const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "images", "profile.jpg"));
+const hasPhoto = fs.existsSync(
+  path.join(process.cwd(), "public", "images", "profile.jpg")
+);
 
 export function Hero() {
   return (
@@ -12,20 +14,40 @@ export function Hero() {
     >
       <div className="flex flex-col gap-6">
         <p className="font-mono text-sm text-accent">Hi, I'm</p>
-        <h1 className="font-display text-4xl font-semibold text-fg sm:text-5xl">{profile.name}</h1>
+        <h1 className="font-display text-4xl font-semibold text-fg sm:text-5xl">
+          {profile.name}
+        </h1>
         <h2 className="text-xl text-fg-muted sm:text-2xl">{profile.role}</h2>
         <p className="max-w-2xl text-fg-muted">{profile.tagline}</p>
         <div className="flex flex-wrap gap-4 font-mono text-sm">
-          <a href={profile.links.github} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             GitHub
           </a>
-          <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={profile.links.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             LinkedIn
           </a>
-          <a href={profile.links.leetcode} target="_blank" rel="noreferrer" className="text-accent hover:underline">
+          <a
+            href={profile.links.leetcode}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent hover:underline"
+          >
             LeetCode
           </a>
-          <a href={`mailto:${profile.email}`} className="text-accent hover:underline">
+          <a
+            href={`mailto:${profile.email}`}
+            className="text-accent hover:underline"
+          >
             Email
           </a>
           <a

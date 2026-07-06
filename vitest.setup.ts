@@ -1,10 +1,10 @@
-import { vi } from "vitest";
+import {vi} from "vitest";
 import "@testing-library/jest-dom/vitest";
 
 // Mock matchMedia for next-themes
 Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: vi.fn().mockImplementation((query) => ({
+  value: vi.fn().mockImplementation(query => ({
     // matches is hardcoded to false; tests verifying OS dark-preference detection must override window.matchMedia locally
     matches: false,
     media: query,
@@ -13,8 +13,8 @@ Object.defineProperty(window, "matchMedia", {
     removeListener: vi.fn(),
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })),
+    dispatchEvent: vi.fn()
+  }))
 });
 
 // jsdom has no IntersectionObserver; framer-motion's whileInView (used by Reveal) needs one to mount.
@@ -31,10 +31,10 @@ class MockIntersectionObserver {
 Object.defineProperty(window, "IntersectionObserver", {
   writable: true,
   configurable: true,
-  value: MockIntersectionObserver,
+  value: MockIntersectionObserver
 });
 Object.defineProperty(globalThis, "IntersectionObserver", {
   writable: true,
   configurable: true,
-  value: MockIntersectionObserver,
+  value: MockIntersectionObserver
 });
